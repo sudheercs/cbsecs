@@ -1,6 +1,6 @@
-# Class 12 Computer Science Slides
+# Class 11 & 12 Computer Science
 
-16 slide decks (753 slides) as a static website. The site is in `docs/`; the `.pptx` sources are in `pptx/`.
+All the slide decks as a static website. The site is in `docs/`; the `.pptx` sources are in `pptx/`.
 
 ## Put it on GitHub Pages
 1. Create a new repository on GitHub (public, e.g. `class12-cs`) and upload everything in this folder, or push it with git.
@@ -20,14 +20,11 @@ Every deck also has its own link, e.g. `.../#python-strings` or `.../#python-str
 4. Commit and push; the site updates in about a minute.
 
 ## Look at it on your computer first
-The decks load with `fetch`, so open the site through a small server, not by double-clicking:
-
-    cd docs
-    python3 -m http.server 8000
-
-then visit http://localhost:8000
+Just double-click `docs/index.html`; it works straight from the folder, no server needed.
 
 ## How it works
-`tools/convert.py` reads each `.pptx` and writes the slides as HTML (real text, same layout) to `docs/decks/`; pictures go to `docs/img/`.
+`tools/convert.py` reads each `.pptx` and writes the slides as HTML (real text, same layout) into `docs/decks/<name>.js`; pictures go to `docs/img/`.
 `build.py` then assembles `docs/index.html` from `tools/template.html` with the fonts (Carlito, Caladea, Liberation Mono; open-licence look-alikes of Calibri, Cambria, Courier New) embedded.
 Keys in the viewer: ← → PageUp PageDown Space, Home, End, G (grid), S (scroll), F (fullscreen), Esc.
+
+Created By Sudheer Singh, PGT Computer Science

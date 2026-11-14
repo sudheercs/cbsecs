@@ -34,6 +34,9 @@ for d in decks:
         print("SKIP (missing file):", src); continue
     n = convert.convert(src, d["slug"])
     frag = open(os.path.join(OUT, "decks", d["slug"] + ".html")).read()
+    open(os.path.join(OUT, "decks", d["slug"] + ".js"), "w", encoding="utf-8").write(
+        "window.__DECK_HTML=window.__DECK_HTML||{};window.__DECK_HTML[%s]=%s;" % (json.dumps(d["slug"]), json.dumps(frag).replace("</", "<\\/")))
+    os.remove(os.path.join(OUT, "decks", d["slug"] + ".html"))
     cover = re.search(r'<section class="sl"[^>]*>(.*?)</section>', frag, re.S).group(1)
     data.append({"slug": d["slug"], "title": d["title"], "group": d["group"], "blurb": d["blurb"], "slides": n, "cover": cover})
     print("%-34s %3d slides" % (d["slug"], n))
