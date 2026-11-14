@@ -129,7 +129,7 @@
   "slug": "introduction-to-files",
   "file": "Introduction_to_Files",
   "title": "Introduction to Files",
-  "group": "File Handling",
+  "group": "Python",
   "blurb": "Text, binary and CSV files; absolute and relative paths"
  }
 ]
