@@ -7,6 +7,13 @@
     "blurb": "Introduction and features, hello world, interactive and script modes, character set, tokens, variables, l-value and r-value, comments"
   },
   {
+    "slug": "data-types-operators",
+    "file": "Data_Types_Operators",
+    "title": "Data Types and Operators",
+    "group": "Python",
+    "blurb": "Number, Boolean, sequence, None and mapping types, mutability, all operator groups, expressions and precedence, type conversion, input/output, errors"
+  },
+  {
     "slug": "python-flow-of-control",
     "file": "Python_Flow_of_Control_Class12",
     "title": "Python Flow of Control",
