@@ -138,5 +138,26 @@
     "title": "Text File Handling",
     "group": "File Handling",
     "blurb": "open() and modes, close(), with, write(), read(), seek() and tell(), file programs"
+  },
+  {
+    "slug": "binary-file-handling",
+    "file": "Binary_File_Handling",
+    "title": "Binary File Handling",
+    "group": "File Handling",
+    "blurb": "Binary modes, pickle dump() and load(), create, read, search, append, update and delete records"
+  },
+  {
+    "slug": "csv-file-handling",
+    "file": "CSV_File_Handling",
+    "title": "CSV File Handling",
+    "group": "File Handling",
+    "blurb": "The csv module: writer(), writerow(), writerows(), reader(), and record programs"
+  },
+  {
+    "slug": "stack-data-structure",
+    "file": "Stack_Data_Structure",
+    "title": "Stack Data Structure",
+    "group": "Data Structures",
+    "blurb": "LIFO, push and pop, stack using a list, underflow, and stack programs"
   }
 ]
