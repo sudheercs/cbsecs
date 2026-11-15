@@ -1,5 +1,12 @@
 [
   {
+    "slug": "python-basics",
+    "file": "Python_Basics",
+    "title": "Python Basics",
+    "group": "Python",
+    "blurb": "Introduction and features, hello world, interactive and script modes, character set, tokens, variables, l-value and r-value, comments"
+  },
+  {
     "slug": "python-flow-of-control",
     "file": "Python_Flow_of_Control_Class12",
     "title": "Python Flow of Control",
@@ -159,5 +166,12 @@
     "title": "Stack Data Structure",
     "group": "Data Structures",
     "blurb": "LIFO, push and pop, stack using a list, underflow, and stack programs"
+  },
+  {
+    "slug": "problem-solving-intro",
+    "file": "Problem_Solving_Intro",
+    "title": "Introduction to Problem Solving",
+    "group": "Problem Solving",
+    "blurb": "Steps of problem solving, algorithms, flowcharts, pseudocode, testing, debugging and decomposition"
   }
 ]

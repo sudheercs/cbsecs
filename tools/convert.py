@@ -161,6 +161,13 @@ def render_sp(sp):
         st.append("border-radius:%spx" % fnum(adj / 100000.0 * min(w, h)))
     elif prst == "ellipse":
         st.append("border-radius:50%")
+    elif prst == "flowChartTerminator":
+        st.append("border-radius:%spx" % fnum(min(w, h) / 2.0))
+    elif prst == "diamond":
+        st.append("clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)")
+    elif prst == "parallelogram":
+        off = fnum(0.25 * min(w, h))
+        st.append("clip-path:polygon(%spx 0,100%% 0,calc(100%% - %spx) 100%%,0 100%%)" % (off, off))
     shadows = []
     if lcol and lw > 0:
         if dash == "solid":
