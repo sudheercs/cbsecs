@@ -1,184 +1,198 @@
 [
-  {
-    "slug": "python-basics",
-    "file": "Python_Basics",
-    "title": "Python Basics",
-    "group": "Python",
-    "blurb": "Introduction and features, hello world, interactive and script modes, character set, tokens, variables, l-value and r-value, comments"
-  },
-  {
-    "slug": "data-types-operators",
-    "file": "Data_Types_Operators",
-    "title": "Data Types and Operators",
-    "group": "Python",
-    "blurb": "Number, Boolean, sequence, None and mapping types, mutability, all operator groups, expressions and precedence, type conversion, input/output, errors"
-  },
-  {
-    "slug": "python-flow-of-control",
-    "file": "Python_Flow_of_Control_Class12",
-    "title": "Python Flow of Control",
-    "group": "Python",
-    "blurb": "Sequence, selection and iteration; if, elif, else and nesting"
-  },
-  {
-    "slug": "python-iterative-statements",
-    "file": "Python_Iterative_Statements_Class12",
-    "title": "Python Iterative Statements",
-    "group": "Python",
-    "blurb": "for, while, range, break, continue and loop patterns"
-  },
-  {
-    "slug": "python-strings",
-    "file": "Python_Strings_Class12",
-    "title": "Python Strings",
-    "group": "Python",
-    "blurb": "Indexing, slicing, operators and string methods"
-  },
-  {
-    "slug": "python-lists",
-    "file": "Python_Lists_Class12",
-    "title": "Python Lists",
-    "group": "Python",
-    "blurb": "Creating, slicing, methods and list traversal"
-  },
-  {
-    "slug": "python-tuples",
-    "file": "Python_Tuples_Class12",
-    "title": "Python Tuples",
-    "group": "Python",
-    "blurb": "Immutable sequences, packing, unpacking and methods"
-  },
-  {
-    "slug": "python-dictionaries",
-    "file": "Python_Dictionaries_Class12",
-    "title": "Python Dictionaries",
-    "group": "Python",
-    "blurb": "Keys and values, methods and traversal"
-  },
-  {
-    "slug": "python-modules",
-    "file": "Python_Modules_Class12",
-    "title": "Python Modules",
-    "group": "Python",
-    "blurb": "Importing, math, random, statistics and user-defined modules"
-  },
-  {
-    "slug": "python-functions",
-    "file": "Python_Functions_Class12",
-    "title": "Python Functions",
-    "group": "Python",
-    "blurb": "Built-in, module and user defined functions, arguments, return, scope"
-  },
-  {
-    "slug": "python-exception-handling",
-    "file": "Python_Exception_Handling_Class12",
-    "title": "Python Exception Handling",
-    "group": "Python",
-    "blurb": "try, except, else, finally, raise and common built-in exceptions"
-  },
-  {
-    "slug": "database-concepts",
-    "file": "Database_Concepts_Relational_Model_Class12",
-    "title": "Database Concepts",
-    "group": "Databases and SQL",
-    "blurb": "File system vs DBMS, relational model, keys"
-  },
-  {
-    "slug": "sql-ddl-dml",
-    "file": "SQL_DDL_DML_Class12",
-    "title": "SQL: DDL and DML",
-    "group": "Databases and SQL",
-    "blurb": "Create, alter, insert, select and constraints"
-  },
-  {
-    "slug": "sql-queries-aggregates-joins",
-    "file": "SQL_Part2_Queries_Aggregates_Joins_Class12",
-    "title": "SQL: Queries, Aggregates, Joins",
-    "group": "Databases and SQL",
-    "blurb": "IN, BETWEEN, LIKE, NULL, GROUP BY, HAVING and joins"
-  },
-  {
-    "slug": "python-mysql-connectivity",
-    "file": "Python_MySQL_Connectivity_Class12",
-    "title": "Python and MySQL",
-    "group": "Databases and SQL",
-    "blurb": "connect, cursor, execute, commit and fetch"
-  },
-  {
-    "slug": "networks-evolution",
-    "file": "Computer_Networks_Evolution_DataComm_Class12",
-    "title": "Computer Networks",
-    "group": "Networks",
-    "blurb": "Evolution, data communication terms and switching"
-  },
-  {
-    "slug": "transmission-media",
-    "file": "Transmission_Media_Devices_Topologies_Class12",
-    "title": "Transmission Media and Topologies",
-    "group": "Networks",
-    "blurb": "Wired and wireless media, devices and topologies"
-  },
-  {
-    "slug": "network-protocols",
-    "file": "Network_Protocols_Web_Services_Class12",
-    "title": "Protocols and Web Services",
-    "group": "Networks",
-    "blurb": "HTTP, FTP, TCP/IP, email, VoIP and the web"
-  },
-  {
-    "slug": "network-devices",
-    "file": "Network_Devices_Class12",
-    "title": "Network Devices",
-    "group": "Networks",
-    "blurb": "Modem to gateway, with pictures, mind-maps and comparisons"
-  },
-  {
-    "slug": "society-law-ethics",
-    "file": "Society_Law_Ethics_Class12",
-    "title": "Society, Law and Ethics",
-    "group": "Society and Ethics",
-    "blurb": "Footprints, IPR, cyber crime, malware, e-waste and the IT Act"
-  },
-  {
-    "slug": "introduction-to-files",
-    "file": "Introduction_to_Files",
-    "title": "Introduction to Files",
-    "group": "File Handling",
-    "blurb": "Text, binary and CSV files; absolute and relative paths"
-  },
-  {
-    "slug": "text-file-handling",
-    "file": "Text_File_Handling",
-    "title": "Text File Handling",
-    "group": "File Handling",
-    "blurb": "open() and modes, close(), with, write(), read(), seek() and tell(), file programs"
-  },
-  {
-    "slug": "binary-file-handling",
-    "file": "Binary_File_Handling",
-    "title": "Binary File Handling",
-    "group": "File Handling",
-    "blurb": "Binary modes, pickle dump() and load(), create, read, search, append, update and delete records"
-  },
-  {
-    "slug": "csv-file-handling",
-    "file": "CSV_File_Handling",
-    "title": "CSV File Handling",
-    "group": "File Handling",
-    "blurb": "The csv module: writer(), writerow(), writerows(), reader(), and record programs"
-  },
-  {
-    "slug": "stack-data-structure",
-    "file": "Stack_Data_Structure",
-    "title": "Stack Data Structure",
-    "group": "Data Structures",
-    "blurb": "LIFO, push and pop, stack using a list, underflow, and stack programs"
-  },
-  {
-    "slug": "problem-solving-intro",
-    "file": "Problem_Solving_Intro",
-    "title": "Introduction to Problem Solving",
-    "group": "Problem Solving",
-    "blurb": "Steps of problem solving, algorithms, flowcharts, pseudocode, testing, debugging and decomposition"
-  }
+ {
+  "slug": "computer-systems-software",
+  "file": "Computer_Systems_Software",
+  "title": "Computer Systems and Software",
+  "group": "Computer Systems",
+  "blurb": "Computer organization, hardware, input and output devices, CPU, memory and units, types of software, translators, operating system functions and user interface"
+ },
+ {
+  "slug": "logic-numbers-encoding",
+  "file": "Logic_Numbers_Encoding",
+  "title": "Logic, Number Systems and Encoding",
+  "group": "Computer Systems",
+  "blurb": "Boolean logic, gates, truth tables, De Morgan's laws, logic circuits, binary, octal, decimal and hex conversion, ASCII, ISCII and Unicode (UTF-8, UTF-32)"
+ },
+ {
+  "slug": "python-basics",
+  "file": "Python_Basics",
+  "title": "Python Basics",
+  "group": "Python",
+  "blurb": "Introduction and features, hello world, interactive and script modes, character set, tokens, variables, l-value and r-value, comments"
+ },
+ {
+  "slug": "data-types-operators",
+  "file": "Data_Types_Operators",
+  "title": "Data Types and Operators",
+  "group": "Python",
+  "blurb": "Number, Boolean, sequence, None and mapping types, mutability, all operator groups, expressions and precedence, type conversion, input/output, errors"
+ },
+ {
+  "slug": "python-flow-of-control",
+  "file": "Python_Flow_of_Control_Class12",
+  "title": "Python Flow of Control",
+  "group": "Python",
+  "blurb": "Sequence, selection and iteration; if, elif, else and nesting"
+ },
+ {
+  "slug": "python-iterative-statements",
+  "file": "Python_Iterative_Statements_Class12",
+  "title": "Python Iterative Statements",
+  "group": "Python",
+  "blurb": "for, while, range, break, continue and loop patterns"
+ },
+ {
+  "slug": "python-strings",
+  "file": "Python_Strings_Class12",
+  "title": "Python Strings",
+  "group": "Python",
+  "blurb": "Indexing, slicing, operators and string methods"
+ },
+ {
+  "slug": "python-lists",
+  "file": "Python_Lists_Class12",
+  "title": "Python Lists",
+  "group": "Python",
+  "blurb": "Creating, slicing, methods and list traversal"
+ },
+ {
+  "slug": "python-tuples",
+  "file": "Python_Tuples_Class12",
+  "title": "Python Tuples",
+  "group": "Python",
+  "blurb": "Immutable sequences, packing, unpacking and methods"
+ },
+ {
+  "slug": "python-dictionaries",
+  "file": "Python_Dictionaries_Class12",
+  "title": "Python Dictionaries",
+  "group": "Python",
+  "blurb": "Keys and values, methods and traversal"
+ },
+ {
+  "slug": "python-modules",
+  "file": "Python_Modules_Class12",
+  "title": "Python Modules",
+  "group": "Python",
+  "blurb": "Importing, math, random, statistics and user-defined modules"
+ },
+ {
+  "slug": "python-functions",
+  "file": "Python_Functions_Class12",
+  "title": "Python Functions",
+  "group": "Python",
+  "blurb": "Built-in, module and user defined functions, arguments, return, scope"
+ },
+ {
+  "slug": "python-exception-handling",
+  "file": "Python_Exception_Handling_Class12",
+  "title": "Python Exception Handling",
+  "group": "Python",
+  "blurb": "try, except, else, finally, raise and common built-in exceptions"
+ },
+ {
+  "slug": "database-concepts",
+  "file": "Database_Concepts_Relational_Model_Class12",
+  "title": "Database Concepts",
+  "group": "Databases and SQL",
+  "blurb": "File system vs DBMS, relational model, keys"
+ },
+ {
+  "slug": "sql-ddl-dml",
+  "file": "SQL_DDL_DML_Class12",
+  "title": "SQL: DDL and DML",
+  "group": "Databases and SQL",
+  "blurb": "Create, alter, insert, select and constraints"
+ },
+ {
+  "slug": "sql-queries-aggregates-joins",
+  "file": "SQL_Part2_Queries_Aggregates_Joins_Class12",
+  "title": "SQL: Queries, Aggregates, Joins",
+  "group": "Databases and SQL",
+  "blurb": "IN, BETWEEN, LIKE, NULL, GROUP BY, HAVING and joins"
+ },
+ {
+  "slug": "python-mysql-connectivity",
+  "file": "Python_MySQL_Connectivity_Class12",
+  "title": "Python and MySQL",
+  "group": "Databases and SQL",
+  "blurb": "connect, cursor, execute, commit and fetch"
+ },
+ {
+  "slug": "networks-evolution",
+  "file": "Computer_Networks_Evolution_DataComm_Class12",
+  "title": "Computer Networks",
+  "group": "Networks",
+  "blurb": "Evolution, data communication terms and switching"
+ },
+ {
+  "slug": "transmission-media",
+  "file": "Transmission_Media_Devices_Topologies_Class12",
+  "title": "Transmission Media and Topologies",
+  "group": "Networks",
+  "blurb": "Wired and wireless media, devices and topologies"
+ },
+ {
+  "slug": "network-protocols",
+  "file": "Network_Protocols_Web_Services_Class12",
+  "title": "Protocols and Web Services",
+  "group": "Networks",
+  "blurb": "HTTP, FTP, TCP/IP, email, VoIP and the web"
+ },
+ {
+  "slug": "network-devices",
+  "file": "Network_Devices_Class12",
+  "title": "Network Devices",
+  "group": "Networks",
+  "blurb": "Modem to gateway, with pictures, mind-maps and comparisons"
+ },
+ {
+  "slug": "society-law-ethics",
+  "file": "Society_Law_Ethics_Class12",
+  "title": "Society, Law and Ethics",
+  "group": "Society and Ethics",
+  "blurb": "Footprints, IPR, cyber crime, malware, e-waste and the IT Act"
+ },
+ {
+  "slug": "introduction-to-files",
+  "file": "Introduction_to_Files",
+  "title": "Introduction to Files",
+  "group": "File Handling",
+  "blurb": "Text, binary and CSV files; absolute and relative paths"
+ },
+ {
+  "slug": "text-file-handling",
+  "file": "Text_File_Handling",
+  "title": "Text File Handling",
+  "group": "File Handling",
+  "blurb": "open() and modes, close(), with, write(), read(), seek() and tell(), file programs"
+ },
+ {
+  "slug": "binary-file-handling",
+  "file": "Binary_File_Handling",
+  "title": "Binary File Handling",
+  "group": "File Handling",
+  "blurb": "Binary modes, pickle dump() and load(), create, read, search, append, update and delete records"
+ },
+ {
+  "slug": "csv-file-handling",
+  "file": "CSV_File_Handling",
+  "title": "CSV File Handling",
+  "group": "File Handling",
+  "blurb": "The csv module: writer(), writerow(), writerows(), reader(), and record programs"
+ },
+ {
+  "slug": "stack-data-structure",
+  "file": "Stack_Data_Structure",
+  "title": "Stack Data Structure",
+  "group": "Data Structures",
+  "blurb": "LIFO, push and pop, stack using a list, underflow, and stack programs"
+ },
+ {
+  "slug": "problem-solving-intro",
+  "file": "Problem_Solving_Intro",
+  "title": "Introduction to Problem Solving",
+  "group": "Problem Solving",
+  "blurb": "Steps of problem solving, algorithms, flowcharts, pseudocode, testing, debugging and decomposition"
+ }
 ]
