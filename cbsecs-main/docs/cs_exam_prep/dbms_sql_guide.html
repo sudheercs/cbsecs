@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CBSE Class 12 CS - Database Management & SQL Master Study Guide (2022–2026)</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --secondary: #0d9488;
+      --accent: #f59e0b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --badge-bg: #e0f2fe;
+      --badge-text: #0369a1;
+      --ans-bg: #f0fdf4;
+      --ans-border: #86efac;
+      --ans-text: #166534;
+      --code-bg: #0f172a;
+      --code-text: #f8fafc;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      --radius: 12px;
+    }
+
+    [data-theme="dark"] {
+      --primary: #38bdf8;
+      --primary-dark: #0284c7;
+      --secondary: #14b8a6;
+      --accent: #fbbf24;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --badge-bg: #075985;
+      --badge-text: #e0f2fe;
+      --ans-bg: #064e3b;
+      --ans-border: #059669;
+      --ans-text: #d1fae5;
+      --code-bg: #020617;
+      --code-text: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s, color 0.2s; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Top Nav */
+    .top-nav {
+      background: #0f172a;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+    .top-nav a { color: #94a3b8; text-decoration: none; margin-right: 1.25rem; font-weight: 500; }
+    .top-nav a:hover, .top-nav a.active { color: #38bdf8; font-weight: 700; }
+
+    header {
+      background: linear-gradient(135deg, #0369a1 0%, #0d9488 100%);
+      color: white;
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2);
+    }
+    header h1 { font-size: 2.3rem; font-weight: 800; margin-bottom: 0.5rem; }
+    header p { font-size: 1.1rem; opacity: 0.9; max-width: 800px; margin: 0 auto 1.5rem; }
+    .header-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+    .badge {
+      display: inline-block; padding: 0.3rem 0.8rem; border-radius: 9999px;
+      font-size: 0.82rem; font-weight: 600; background: rgba(255,255,255,0.2); backdrop-filter: blur(4px);
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+
+    /* Controls */
+    .controls {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .search-row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+    .search-input {
+      flex: 1; min-width: 250px; padding: 0.75rem 1rem; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 0.95rem;
+    }
+    .theme-toggle-btn {
+      padding: 0.75rem 1.25rem; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--bg); color: var(--text); cursor: pointer; font-weight: 600;
+    }
+    .filter-group { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+    .filter-label { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-right: 0.25rem; }
+    .pill {
+      padding: 0.4rem 0.9rem; border-radius: 9999px; border: 1px solid var(--border);
+      background: var(--card-bg); color: var(--text); cursor: pointer; font-size: 0.85rem; font-weight: 500;
+    }
+    .pill:hover { border-color: var(--primary); color: var(--primary); }
+    .pill.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+    .group-section { margin-bottom: 3rem; }
+    .group-header {
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 2px solid var(--border); padding-bottom: 0.75rem; margin-bottom: 1.5rem;
+    }
+    .group-title { font-size: 1.6rem; font-weight: 700; color: var(--text); }
+    .group-count { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
+
+    .q-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    .q-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-bottom: 1rem; }
+    .meta-badge { font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 6px; text-transform: uppercase; }
+    .meta-year { background: #fee2e2; color: #991b1b; }
+    [data-theme="dark"] .meta-year { background: #7f1d1d; color: #fecaca; }
+    .meta-marks { background: #fef3c7; color: #92400e; }
+    [data-theme="dark"] .meta-marks { background: #78350f; color: #fde68a; }
+    .meta-topic { background: var(--badge-bg); color: var(--badge-text); }
+    .meta-type { background: #ccfbf1; color: #0f766e; }
+    [data-theme="dark"] .meta-type { background: #134e4a; color: #99f6e4; }
+
+    .q-text { font-size: 1.05rem; font-weight: 600; line-height: 1.6; margin-bottom: 1rem; }
+    .q-options { margin: 1rem 0 1.25rem 1.25rem; display: grid; gap: 0.4rem; font-size: 0.95rem; }
+
+    .ans-btn {
+      background: transparent; border: 1.5px solid var(--primary); color: var(--primary);
+      padding: 0.5rem 1.1rem; border-radius: 6px; font-weight: 600; font-size: 0.88rem; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem;
+    }
+    .ans-btn:hover { background: var(--primary); color: white; }
+
+    .ans-container {
+      margin-top: 1rem; padding: 1.25rem; border-radius: 8px;
+      background: var(--ans-bg); border: 1px solid var(--ans-border); color: var(--ans-text);
+      display: block; font-size: 0.95rem;
+    }
+    .ans-container.hidden { display: none; }
+    .ans-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .rubric { margin-top: 0.75rem; font-size: 0.85rem; color: var(--text-muted); font-style: italic; border-top: 1px dashed var(--ans-border); padding-top: 0.5rem; }
+
+    pre.code-block {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.92rem;
+      margin: 0.75rem 0;
+    }
+
+    table.data-table {
+      width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;
+    }
+    table.data-table th, table.data-table td {
+      border: 1px solid var(--border); padding: 0.6rem 0.8rem; text-align: left;
+    }
+    table.data-table th { background: var(--bg); font-weight: 700; }
+
+    .illustration-box {
+      margin: 1.25rem 0; padding: 1.25rem; border-radius: 8px;
+      background: var(--bg); border: 1px solid var(--border); text-align: center;
+    }
+    .illustration-box svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+    .illustration-title { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.75rem; text-transform: uppercase; }
+  
+
+.site-nav {
+  background: #0f172a;
+  border-bottom: 1px solid #334155;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
+}
+.nav-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: #f8fafc;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.3px;
+}
+.nav-brand:hover { color: #38bdf8; }
+.brand-icon { font-size: 1.4rem; }
+.brand-sub {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  background: #0284c7;
+  color: white;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.nav-item {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.nav-item:hover {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.08);
+}
+.nav-item.active {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  font-weight: 700;
+}
+.nav-badge {
+  font-size: 0.7rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.15);
+  color: inherit;
+  font-weight: 700;
+}
+.nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+.theme-toggle {
+  background: #1e293b;
+  border: 1px solid #475569;
+  color: #f8fafc;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.theme-toggle:hover { background: #334155; }
+
+/* Breadcrumbs */
+.breadcrumb-bar {
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  padding: 0.65rem 1.25rem;
+}
+.breadcrumb-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.breadcrumb-container a { color: var(--primary); text-decoration: none; font-weight: 600; }
+.breadcrumb-container a:hover { text-decoration: underline; }
+.breadcrumb-separator { color: var(--text-muted); opacity: 0.6; }
+.breadcrumb-current { font-weight: 600; color: var(--text); }
+
+/* Inter-Page Navigation Cards (Bottom Pagination) */
+.page-pagination {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin: 3rem 0 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.page-nav-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow);
+}
+.page-nav-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.15);
+}
+.page-nav-card.prev { text-align: left; }
+.page-nav-card.next { text-align: right; }
+.page-nav-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+.page-nav-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.page-nav-card.next .page-nav-title { justify-content: flex-end; }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   SUDHEER CS THEME — matched from sudheercs.github.io/cbsecs/
+   Color palette: Navy-Blue-Yellow, Python-inspired, clean & flat
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* Fonts — metric equivalents of Calibri / Cambria / Courier New */
+  --DeckSans: 'Calibri','Carlito','Segoe UI',Arial,sans-serif;
+  --DeckSerif: 'Cambria','Caladea',Georgia,serif;
+  --DeckMono: 'Courier New','Liberation Mono',monospace;
+
+  /* Light mode palette */
+  --bg:         #F2F5FA;
+  --surface:    #FFFFFF;
+  --fg:         #1B2A4E;
+  --muted:      #56657F;
+  --line:       #D3DBE8;
+  --accent:     #306998;
+  --accent-dark:#1B4F72;
+  --accent-ink: #FFFFFF;
+  --stage:      #DFE5EF;
+  --hl:         #FFD43B;
+  --hl-ink:     #1B2A4E;
+  --shadow:     rgba(27,42,78,.16);
+  --radius:     10px;
+  --radius-lg:  14px;
+
+  /* Semantic aliases used by existing pages */
+  --primary:       #306998;
+  --primary-dark:  #1B4F72;
+  --secondary:     #FFD43B;
+  --text:          #1B2A4E;
+  --text-muted:    #56657F;
+  --border:        #D3DBE8;
+  --card-bg:       #FFFFFF;
+  --ans-bg:        #EEF4FB;
+  --ans-border:    #86B7E8;
+  --ans-text:      #1B2A4E;
+  --code-bg:       #0D1324;
+  --code-text:     #E7ECF6;
+  --badge-bg:      #EEF4FB;
+  --badge-text:    #1B4F72;
+}
+
+/* Dark mode — activated by [data-theme="dark"] on <body>
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="index.html" class="nav-brand" aria-label="CBSE CS Exam Hub Home">
+      <span class="brand-icon">🎓</span>
+      <span class="brand-text">CBSE CS 083&nbsp;<span class="brand-sub">Exam Hub</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-item ">🏠 Home</a>
+      <a href="python_study_guide.html" class="nav-item ">🐍 Python & Stacks<span class="nav-badge">40M</span></a>
+      <a href="networks_study_guide.html" class="nav-item ">🌐 Networks<span class="nav-badge">10M</span></a>
+      <a href="dbms_sql_guide.html" class="nav-item active">🗄️ DBMS & SQL<span class="nav-badge">20M</span></a>
+      
+    </div>
+    <div class="nav-actions">
+      <a href="https://sudheercs.github.io/cbsecs/" class="sudheer-home-btn" target="_blank" rel="noopener" aria-label="Go to SudheerCS Main Website">
+        <span class="btn-icon">🏫</span> SudheerCS
+      </a>
+      <button class="theme-toggle" onclick="toggleTheme()" id="globalThemeBtn" aria-label="Toggle dark/light mode">🌙 Dark</button>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumb-bar" aria-label="Breadcrumb">
+  <div class="breadcrumb-container">
+    <a href="index.html">Home</a> <span class="breadcrumb-separator">›</span> <span class="breadcrumb-current">Unit 3: Database Management & SQL</span>
+  </div>
+</div>
+*/
+[data-theme="dark"] {
+  --bg:         #0D1324;
+  --surface:    #161F36;
+  --fg:         #E7ECF6;
+  --muted:      #9BA9C4;
+  --line:       #28344F;
+  --accent:     #86B7E8;
+  --accent-dark:#CADCFC;
+  --accent-ink: #0D1324;
+  --stage:      #090E1B;
+  --shadow:     rgba(0,0,0,.5);
+
+  --primary:       #86B7E8;
+  --primary-dark:  #CADCFC;
+  --secondary:     #FFD43B;
+  --text:          #E7ECF6;
+  --text-muted:    #9BA9C4;
+  --border:        #28344F;
+  --card-bg:       #161F36;
+  --ans-bg:        #121A2E;
+  --ans-border:    #86B7E8;
+  --ans-text:      #E7ECF6;
+  --code-bg:       #090E1B;
+  --code-text:     #E7ECF6;
+  --badge-bg:      #1B2A4E;
+  --badge-text:    #86B7E8;
+}
+
+/* ── Global base overrides ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  font-family: var(--DeckSans) !important;
+  background-color: var(--bg) !important;
+  color: var(--fg) !important;
+  font-size: 16px;
+  line-height: 1.5;
+  transition: background-color 0.2s, color 0.2s;
+}
+h1, h2, h3, h4, h5 {
+  font-family: var(--DeckSerif) !important;
+  color: var(--fg) !important;
+}
+code, pre, .code, kbd {
+  font-family: var(--DeckMono) !important;
+}
+
+/* ── Sticky nav — sudheercs dark navy bar ──────────────────────── */
+.site-nav {
+  background: #0D1324 !important;
+  border-bottom: 1px solid #28344F !important;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,.35);
+}
+.nav-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0.7rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 0.6rem;
+  text-decoration: none;
+  color: #E7ECF6 !important;
+  font-family: var(--DeckSerif) !important;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+.nav-brand:hover { color: #86B7E8 !important; }
+.brand-icon { font-size: 1.35rem; }
+.brand-sub {
+  font-family: var(--DeckSans) !important;
+  font-size: 0.72rem; font-weight: 700;
+  padding: 0.12rem 0.45rem;
+  background: #306998; color: #fff;
+  border-radius: 999px; text-transform: uppercase;
+}
+.nav-links { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+.nav-item {
+  font-family: var(--DeckSans) !important;
+  color: #9BA9C4 !important;
+  text-decoration: none;
+  font-size: 0.875rem; font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 7px;
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-item:hover { color: #E7ECF6 !important; background: rgba(134,183,232,.12); }
+.nav-item.active { color: #FFD43B !important; background: rgba(255,212,59,.1); font-weight: 700; }
+.nav-badge {
+  font-size: 0.68rem; padding: 0.08rem 0.4rem; border-radius: 999px;
+  background: rgba(48,105,152,.5); color: #CADCFC; font-weight: 700;
+}
+.nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+.theme-toggle {
+  background: #1B2A4E; border: 1px solid #28344F;
+  color: #E7ECF6; padding: 0.4rem 0.8rem;
+  border-radius: 7px; font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; font-family: var(--DeckSans) !important;
+  transition: background 0.15s;
+}
+.theme-toggle:hover { background: #22335C; border-color: #306998; }
+
+/* ── Breadcrumb ────────────────────────────────────────────────── */
+.breadcrumb-bar {
+  background: var(--surface) !important;
+  border-bottom: 1px solid var(--line) !important;
+  padding: 0.6rem 1.25rem;
+}
+.breadcrumb-container {
+  max-width: 1180px; margin: 0 auto;
+  font-size: 0.84rem; color: var(--muted);
+  display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;
+}
+.breadcrumb-container a { color: var(--accent) !important; text-decoration: none; font-weight: 600; }
+.breadcrumb-container a:hover { text-decoration: underline; }
+.breadcrumb-separator { opacity: 0.5; }
+.breadcrumb-current { font-weight: 600; color: var(--fg) !important; }
+
+/* ── Home button for sudheercs.github.io ──────────────────────── */
+.sudheer-home-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: #FFD43B; color: #1B2A4E !important;
+  font-family: var(--DeckSans) !important;
+  font-size: 0.8rem; font-weight: 700;
+  padding: 0.4rem 0.9rem; border-radius: 7px;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+.sudheer-home-btn:hover { background: #F4A261; transform: translateY(-1px); }
+.sudheer-home-btn .btn-icon { font-size: 1rem; }
+
+/* ── Cards ─────────────────────────────────────────────────────── */
+.q-card, .card {
+  background: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: 0 2px 8px var(--shadow);
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.q-card:hover, .card:hover {
+  box-shadow: 0 8px 22px var(--shadow);
+  transform: translateY(-2px);
+}
+
+/* ── Buttons ────────────────────────────────────────────────────── */
+.btn, button.ans-btn, .toggle-btn {
+  font-family: var(--DeckSans) !important;
+  background: var(--accent) !important;
+  color: var(--accent-ink) !important;
+  border: none; border-radius: 7px;
+  padding: 0.5rem 1rem;
+  cursor: pointer; font-weight: 600;
+  transition: background 0.15s, transform 0.1s;
+}
+.btn:hover, button.ans-btn:hover, .toggle-btn:hover {
+  background: var(--accent-dark) !important;
+  transform: translateY(-1px);
+}
+
+/* ── Filter pills ───────────────────────────────────────────────── */
+.pill {
+  font-family: var(--DeckSans) !important;
+  border: 1px solid var(--line) !important;
+  background: var(--surface) !important;
+  color: var(--fg) !important;
+  border-radius: 999px; padding: 0.35rem 0.9rem;
+  cursor: pointer; font-size: 0.84rem; font-weight: 500;
+  transition: all 0.15s;
+}
+.pill:hover { border-color: var(--accent) !important; color: var(--accent) !important; }
+.pill.active { background: var(--accent) !important; color: var(--accent-ink) !important; border-color: var(--accent) !important; }
+
+/* ── Answer / solution blocks ───────────────────────────────────── */
+.ans-container {
+  background: var(--ans-bg) !important;
+  border-left: 4px solid var(--accent) !important;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--ans-text) !important;
+}
+
+/* ── Marks / marks badges ───────────────────────────────────────── */
+.marks-badge, .badge, .mark-badge {
+  background: var(--hl) !important;
+  color: var(--hl-ink) !important;
+  font-family: var(--DeckSans) !important;
+  font-weight: 700; border-radius: 999px;
+}
+
+/* ── Code blocks ────────────────────────────────────────────────── */
+pre, code {
+  background: var(--code-bg) !important;
+  color: var(--code-text) !important;
+  font-family: var(--DeckMono) !important;
+  border-radius: 7px;
+}
+
+/* ── Tables ─────────────────────────────────────────────────────── */
+table { border-collapse: collapse; width: 100%; }
+th { background: var(--accent) !important; color: var(--accent-ink) !important; font-family: var(--DeckSerif) !important; }
+td, th { border: 1px solid var(--line) !important; padding: 0.6rem 0.9rem; }
+tr:nth-child(even) td { background: var(--stage) !important; }
+
+/* ── Bottom pagination ──────────────────────────────────────────── */
+.page-pagination {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem; margin: 2.5rem 0 1rem;
+  padding-top: 1.75rem; border-top: 1px solid var(--line);
+}
+.page-nav-card {
+  background: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius) !important;
+  padding: 1.1rem 1.25rem;
+  text-decoration: none; display: flex; flex-direction: column;
+  transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.page-nav-card:hover {
+  border-color: var(--accent) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--shadow);
+}
+.page-nav-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--muted) !important; letter-spacing: 0.5px; margin-bottom: 0.2rem; }
+.page-nav-title { font-family: var(--DeckSerif) !important; font-size: 1.02rem; font-weight: 700; color: var(--fg) !important; }
+.page-nav-card.next .page-nav-title { justify-content: flex-end; text-align: right; }
+
+/* ── Section / group headers ────────────────────────────────────── */
+.group-header { border-bottom: 2px solid var(--line) !important; }
+.group-title { font-family: var(--DeckSerif) !important; color: var(--fg) !important; }
+.section-label { font-family: var(--DeckSerif) !important; }
+
+/* ── Search input ───────────────────────────────────────────────── */
+.search-input, input[type="text"], input[type="search"] {
+  font-family: var(--DeckSans) !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  color: var(--fg) !important;
+  border-radius: 8px;
+}
+.search-input:focus, input:focus {
+  outline: 2px solid var(--accent) !important; outline-offset: 2px;
+}
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+footer {
+  font-family: var(--DeckSans) !important;
+  color: var(--muted) !important;
+  border-top: 1px solid var(--line) !important;
+}
+
+/* ── SVG diagrams: re-colour for navy/blue theme ─────────────────── */
+.svg-box { background: var(--stage) !important; border: 1px solid var(--line) !important; border-radius: var(--radius); }
+
+/* ── Controls bar ───────────────────────────────────────────────── */
+.controls {
+  background: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+/* ── Highlight important text in yellow ─────────────────────────── */
+.hl, mark { background: var(--hl) !important; color: var(--hl-ink) !important; border-radius: 3px; padding: 0 2px; }
+
+/* ── Scrollbar styling ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--stage); }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Unit 3: Database Management & SQL</h1>
+  <p>Complete Class 12 CBSE Board Exam Study Guide (2022–2026) — Concepts, DDL/DML, Complex Queries, Output Prediction & Python-MySQL Connectivity</p>
+  <div class="header-badges">
+    <span class="badge">⚖️ Fixed Weightage: 20 Marks</span>
+    <span class="badge">📘 5 Years of Board Questions</span>
+    <span class="badge">💯 100% Verified Official Marking Schemes</span>
+    <span class="badge">💻 Python-MySQL Database Connectivity Included</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Interactive Controls -->
+  <div class="controls">
+    <div class="search-row">
+      <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search SQL questions, keywords (e.g. PRIMARY KEY, GROUP BY, HAVING, fetchall, ALTER TABLE)..." oninput="filterCards()">
+      <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Filter Type:</span>
+      <button class="pill active" onclick="setTypeFilter('all', this)">All Types</button>
+      <button class="pill" onclick="setTypeFilter('mcq', this)">MCQs & Objectives (1M)</button>
+      <button class="pill" onclick="setTypeFilter('theory', this)">RDBMS Concepts & Keys (2M)</button>
+      <button class="pill" onclick="setTypeFilter('output', this)">SQL Output Prediction (2-4M)</button>
+      <button class="pill" onclick="setTypeFilter('queries', this)">SQL Query Writing (3-4M)</button>
+      <button class="pill" onclick="setTypeFilter('connector', this)">Python-MySQL Connectivity (3-4M)</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Filter Year:</span>
+      <button class="pill active" onclick="setYearFilter('all', this)">All Years</button>
+      <button class="pill" onclick="setYearFilter('2026', this)">2026</button>
+      <button class="pill" onclick="setYearFilter('2025', this)">2025</button>
+      <button class="pill" onclick="setYearFilter('2024', this)">2024</button>
+      <button class="pill" onclick="setYearFilter('2023', this)">2023</button>
+      <button class="pill" onclick="setYearFilter('2022', this)">2022</button>
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.85rem; color:var(--text-muted); padding-top:0.5rem; border-top:1px solid var(--border);">
+      <span id="resultsCount">Showing all questions</span>
+      <div>
+        <button class="pill" style="font-size:0.8rem;" onclick="toggleAllAnswers(true)">Show All Answers</button>
+        <button class="pill" style="font-size:0.8rem;" onclick="toggleAllAnswers(false)">Hide All Answers</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: MCQs & OBJECTIVE -->
+  <section class="group-section" id="sec-mcq">
+    <div class="group-header">
+      <h2 class="group-title">🎯 Type I: MCQs & 1-Mark Objectives</h2>
+      <span class="group-count">11 Questions</span>
+    </div>
+
+    <!-- 2026 Q12 -->
+    <div class="q-card" data-year="2026" data-type="mcq" data-topic="keys">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2026</span>
+        <span class="meta-badge meta-type">MCQ</span>
+        <span class="meta-badge meta-marks">1 Mark</span>
+        <span class="meta-badge meta-topic">Keys</span>
+      </div>
+      <div class="q-text">
+        Q12. A table has two candidate keys, one of which is chosen as the primary key. How many alternate keys does this table have?
+      </div>
+      <div class="q-options">
+        <div>(A) 0</div>
+        <div>(B) 1</div>
+        <div>(C) 2</div>
+        <div>(D) 3</div>
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <p><strong>(B) 1</strong></p>
+        <div class="rubric">Marking Scheme Rubric: (1 Mark for writing the correct option)</div>
+        <p style="margin-top:0.5rem; font-size:0.9rem;"><em>Rule:</em> <code>Alternate Keys = Total Candidate Keys - 1 (chosen as Primary Key)</code>. Here, $2 - 1 = 1$.</p>
+      </div>
+    </div>
+
+    <!-- 2026 Q13 -->
+    <div class="q-card" data-year="2026" data-type="mcq" data-topic="ddl">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2026</span>
+        <span class="meta-badge meta-type">MCQ</span>
+        <span class="meta-badge meta-marks">1 Mark</span>
+        <span class="meta-badge meta-topic">DDL Commands</span>
+      </div>
+      <div class="q-text">
+        Q13. Which of the following SQL command can change the degree of the existing relation?
+      </div>
+      <div class="q-options">
+        <div>(A) DROP TABLE</div>
+        <div>(B) ALTER TABLE</div>
+        <div>(C) UPDATE...SET</div>
+        <div>(D) DELETE</div>
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <p><strong>(B) ALTER TABLE</strong></p>
+        <div class="rubric">Marking Scheme Rubric: (1 Mark for writing the correct option)</div>
+        <p style="margin-top:0.5rem; font-size:0.9rem;"><em>Concept Note:</em> <strong>Degree</strong> is the number of attributes/columns in a relation. `ALTER TABLE table_name ADD column` increases the degree, while `ALTER TABLE table_name DROP COLUMN column` decreases the degree.</p>
+      </div>
+    </div>
+
+    <!-- 2026 Q15 -->
+    <div class="q-card" data-year="2026" data-type="mcq" data-topic="cardinality">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2026</span>
+        <span class="meta-badge meta-type">MCQ</span>
+        <span class="meta-badge meta-marks">1 Mark</span>
+        <span class="meta-badge meta-topic">Degree & Cardinality</span>
+      </div>
+      <div class="q-text">
+        Q15. A relation in MySQL database consists of 2 tuples and 3 attributes. If 2 attributes are deleted and 4 tuples are added, what will be the cardinality of the relation?
+      </div>
+      <div class="q-options">
+        <div>(A) 4</div>
+        <div>(B) 5</div>
+        <div>(C) 6</div>
+        <div>(D) 7</div>
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <p><strong>(C) 6</strong></p>
+        <div class="rubric">Marking Scheme Rubric: (1 Mark for writing the correct option)</div>
+        <p style="margin-top:0.5rem; font-size:0.9rem;"><em>Calculation:</em> <strong>Cardinality</strong> is the total number of rows (tuples). Initial tuples = 2. Added tuples = 4. New Cardinality = $2 + 4 = 6$. (Note: Deleting attributes changes the <em>degree</em>, from 3 to 1, but has no effect on cardinality!).</p>
+      </div>
+    </div>
+
+    <!-- 2026 Q16 -->
+    <div class="q-card" data-year="2026" data-type="mcq" data-topic="functions">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2026</span>
+        <span class="meta-badge meta-type">MCQ</span>
+        <span class="meta-badge meta-marks">1 Mark</span>
+        <span class="meta-badge meta-topic">Aggregate Functions</span>
+      </div>
+      <div class="q-text">
+        Q16. Which aggregate function in SQL returns the smallest value from a column in a table?
+      </div>
+      <div class="q-options">
+        <div>(A) MIN()</div>
+        <div>(B) MAX()</div>
+        <div>(C) SMALL()</div>
+        <div>(D) LOWER()</div>
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <p><strong>(A) MIN()</strong></p>
+        <div class="rubric">Marking Scheme Rubric: (1 Mark for writing the correct option)</div>
+      </div>
+    </div>
+
+    <!-- 2026 Q21 -->
+    <div class="q-card" data-year="2026" data-type="mcq" data-topic="constraints">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2026</span>
+        <span class="meta-badge meta-type">Assertion & Reason</span>
+        <span class="meta-badge meta-marks">1 Mark</span>
+        <span class="meta-badge meta-topic">Primary Key Constraint</span>
+      </div>
+      <div class="q-text">
+        Q21. <strong>Assertion (A):</strong> The PRIMARY KEY constraint in SQL ensures that each value in the column(s) is unique and cannot be NULL.<br>
+        <strong>Reason (R):</strong> Candidate keys are not eligible to become a primary key.
+      </div>
+      <div class="q-options">
+        <div>(A) Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation for Assertion (A).</div>
+        <div>(B) Both Assertion (A) and Reason (R) are true and Reason (R) is not the correct explanation for Assertion (A).</div>
+        <div>(C) Assertion (A) is true, but Reason (R) is false.</div>
+        <div>(D) Assertion (A) is false, but Reason (R) is true.</div>
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <p><strong>(C) Assertion (A) is true, but Reason (R) is false.</strong></p>
+        <div class="rubric">Marking Scheme Rubric: (1 Mark for writing the correct option)</div>
+        <p style="margin-top:0.5rem; font-size:0.9rem;"><em>Reasoning:</em> Primary Key columns are strictly UNIQUE and NOT NULL. Reason (R) is completely false because candidate keys ARE the eligible candidates from which the primary key is selected.</p>
+      </div>
+    </div>
+
+    <!-- 2025 Q13 -->
+    <div class="q-card" data-year="2025" data-type="mcq" data-topic="dml">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2025</span>
+        <span class="meta-badge meta-type">MCQ</span>
+        <span class="meta-badge meta-marks">1 Mark</span>
+        <span class="meta-badge meta-topic">DDL vs DML</span>
+      </div>
+      <div class="q-text">
+        Q13. Which of the following is a DML command in SQL?
+      </div>
+      <div class="q-options">
+        <div>(A) UPDATE</div>
+        <div>(B) CREATE</div>
+        <div>(C) ALTER</div>
+        <div>(D) DROP</div>
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <p><strong>(A) UPDATE</strong></p>
+        <div class="rubric">Marking Scheme Rubric: (1 Mark for writing the correct option)</div>
+        <p style="margin-top:0.5rem; font-size:0.9rem;"><em>Classification:</em> <strong>DDL (Data Definition Language)</strong> defines table schema: <code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>. <strong>DML (Data Manipulation Language)</strong> manipulates row data: <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>.</p>
+      </div>
+    </div>
+
+    <!-- 2025 Q14 -->
+    <div class="q-card" data-year="2025" data-type="mcq" data-topic="functions">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2025</span>
+        <span class="meta-badge meta-type">MCQ</span>
+        <span class="meta-badge meta-marks">1 Mark</span>
+        <span class="meta-badge meta-topic">Aggregate Functions</span>
+      </div>
+      <div class="q-text">
+        Q14. Which aggregate function in SQL displays the number of values in the specified column ignoring the NULL values?
+      </div>
+      <div class="q-options">
+        <div>(A) len()</div>
+        <div>(B) count()</div>
+        <div>(C) number()</div>
+        <div>(D) num()</div>
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <p><strong>(B) count()</strong></p>
+        <div class="rubric">Marking Scheme Rubric: (1 Mark for writing the correct option)</div>
+        <p style="margin-top:0.5rem; font-size:0.9rem;"><em>Important Distinction:</em> <code>COUNT(column_name)</code> counts non-NULL values only. <code>COUNT(*)</code> counts all rows in the table including rows containing NULLs.</p>
+      </div>
+    </div>
+
+    <!-- 2025 Q15 -->
+    <div class="q-card" data-year="2025" data-type="mcq" data-topic="datatypes">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2025</span>
+        <span class="meta-badge meta-type">MCQ</span>
+        <span class="meta-badge meta-marks">1 Mark</span>
+        <span class="meta-badge meta-topic">Data Types</span>
+      </div>
+      <div class="q-text">
+        Q15. In MYSQL, which type of value should not be enclosed within quotation marks?
+      </div>
+      <div class="q-options">
+        <div>(A) DATE</div>
+        <div>(B) VARCHAR</div>
+        <div>(C) FLOAT</div>
+        <div>(D) CHAR</div>
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <p><strong>(C) FLOAT</strong></p>
+        <div class="rubric">Marking Scheme Rubric: (1 Mark for writing the correct option)</div>
+        <p style="margin-top:0.5rem; font-size:0.9rem;"><em>Rule:</em> Numeric data types (INT, FLOAT, DECIMAL) are written bare without quotes. String types (CHAR, VARCHAR) and Date/Time types (DATE e.g. '2026-03-25') must always be enclosed in single or double quotes.</p>
+      </div>
+    </div>
+
+    <!-- 2025 Q16 -->
+    <div class="q-card" data-year="2025" data-type="mcq" data-topic="cartesian">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2025</span>
+        <span class="meta-badge meta-type">True or False</span>
+        <span class="meta-badge meta-marks">1 Mark</span>
+        <span class="meta-badge meta-topic">Cartesian Product</span>
+      </div>
+      <div class="q-text">
+        Q16. State True or False:<br>
+        If table A has 6 rows and 3 columns, and table B has 5 rows and 2 columns, the Cartesian product of A and B will have 30 rows and 5 columns.
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <p><strong>True</strong></p>
+        <div class="rubric">Marking Scheme Rubric: (1 Mark for writing the correct answer)</div>
+        <p style="margin-top:0.5rem; font-size:0.9rem;">
+          <em>Formulas for Cartesian Product ($A 	imes B$):</em><br>
+          • <strong>Cardinality (Rows)</strong> = $	ext{Rows}(A) 	imes 	ext{Rows}(B) = 6 	imes 5 = 30$<br>
+          • <strong>Degree (Columns)</strong> = $	ext{Cols}(A) + 	ext{Cols}(B) = 3 + 2 = 5$
+        </p>
+      </div>
+    </div>
+
+    <!-- 2024 Q2 -->
+    <div class="q-card" data-year="2024" data-type="mcq" data-topic="clauses">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2024</span>
+        <span class="meta-badge meta-type">Fill in the blank</span>
+        <span class="meta-badge meta-marks">1 Mark</span>
+        <span class="meta-badge meta-topic">SELECT Clauses</span>
+      </div>
+      <div class="q-text">
+        Q2. The SELECT statement when combined with ________ clause, returns records without repetition.
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <p><strong>DISTINCT</strong></p>
+        <div class="rubric">Marking Scheme Rubric: (1 Mark for the correct answer)</div>
+      </div>
+    </div>
+
+    <!-- 2024 Q5 -->
+    <div class="q-card" data-year="2024" data-type="mcq" data-topic="functions">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2024</span>
+        <span class="meta-badge meta-type">Fill in the blank</span>
+        <span class="meta-badge meta-marks">1 Mark</span>
+        <span class="meta-badge meta-topic">Aggregate Functions</span>
+      </div>
+      <div class="q-text">
+        Q5. In SQL, the aggregate function which will display the cardinality of the table is __________.
+      </div>
+      <div class="q-options">
+        <div>(a) sum()</div>
+        <div>(b) count(*)</div>
+        <div>(c) avg()</div>
+        <div>(d) sum(*)</div>
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <p><strong>(b) count(*)</strong></p>
+        <div class="rubric">Marking Scheme Rubric: (1 Mark for the correct answer)</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 2: RDBMS CONCEPTS & KEYS -->
+  <section class="group-section" id="sec-theory">
+    <div class="group-header">
+      <h2 class="group-title">🔑 Type II: Relational Data Model Concepts & Keys (2 Marks)</h2>
+      <span class="group-count">5 Questions</span>
+    </div>
+
+    <!-- 2023 Q22 -->
+    <div class="q-card" data-year="2023" data-type="theory" data-topic="keys">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2023</span>
+        <span class="meta-badge meta-type">Concept & Example</span>
+        <span class="meta-badge meta-marks">2 Marks</span>
+        <span class="meta-badge meta-topic">Alternate Key</span>
+      </div>
+      <div class="q-text">
+        Q22. Explain the concept of ‘‘Alternate Key’’ in a Relational Database Management System with an appropriate example.
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <p><strong>Definition:</strong> Alternate Keys are all the Candidate Keys of a table in RDBMS which have NOT been chosen as the Primary Key.</p>
+        <div style="margin: 0.75rem 0;">
+          <strong>Example:</strong>
+          <table class="data-table" style="max-width:450px;">
+            <thead><tr><th>RegNo</th><th>AadhaarNo</th><th>Name</th></tr></thead>
+            <tbody>
+              <tr><td>123456</td><td>123456789012</td><td>Abraham Sen</td></tr>
+              <tr><td>123458</td><td>123456789123</td><td>Umeed Singh</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.9rem;">In this example, both <code>RegNo</code> and <code>AadhaarNo</code> are Candidate Keys. If <code>RegNo</code> is chosen as the Primary Key, then <code>AadhaarNo</code> becomes the <strong>Alternate Key</strong>.</p>
+        </div>
+        <div class="rubric">Marking Scheme Rubric: (2 marks for explaining Alternate Keys with example) OR (1 mark for writing example without explanation) OR (1 mark only for definition)</div>
+      </div>
+    </div>
+
+    <!-- 2023 Q25 -->
+    <div class="q-card" data-year="2023" data-type="theory" data-topic="datatypes">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2023</span>
+        <span class="meta-badge meta-type">Distinction</span>
+        <span class="meta-badge meta-marks">2 Marks</span>
+        <span class="meta-badge meta-topic">CHAR vs VARCHAR</span>
+      </div>
+      <div class="q-text">
+        Q25. Differentiate between CHAR and VARCHAR data types in SQL with appropriate example.
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <table class="data-table">
+          <thead><tr><th>CHAR(n)</th><th>VARCHAR(n)</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Fixed-length character data type. Always allocates exactly $n$ bytes of storage regardless of actual string length.</td>
+              <td>Variable-length character data type. Allocates only as much storage as the actual length of characters plus 1-2 bytes of length prefix.</td>
+            </tr>
+            <tr>
+              <td>If a string with length less than $n$ is stored, spaces are right-padded to complete $n$ characters (wastes memory).</td>
+              <td>No trailing space padding is added; saves memory space.</td>
+            </tr>
+            <tr>
+              <td><em>Example:</em> <code>Gender CHAR(1)</code>, <code>Grade CHAR(2)</code>. Storing 'A' in <code>CHAR(10)</code> occupies all 10 bytes.</td>
+              <td><em>Example:</em> <code>Address VARCHAR(50)</code>. Storing 'A' in <code>VARCHAR(10)</code> occupies only 1 byte (+1 length byte).</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="rubric">Marking Scheme Rubric: (1 mark each for correct difference of CHAR and VARCHAR with example)</div>
+      </div>
+    </div>
+
+    <!-- 2022 Q3 -->
+    <div class="q-card" data-year="2022" data-type="theory" data-topic="concepts">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2022</span>
+        <span class="meta-badge meta-type">Distinction</span>
+        <span class="meta-badge meta-marks">2 Marks</span>
+        <span class="meta-badge meta-topic">Attribute vs Domain</span>
+      </div>
+      <div class="q-text">
+        Q3. Differentiate between the terms Attribute and Domain in the context of Relational Data Model.
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <table class="data-table">
+          <thead><tr><th>Attribute</th><th>Domain</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>A column or named field of a table/relation is known as an <strong>attribute</strong>.</td>
+              <td>It is a pool / set of permissible and legal values from which an attribute can take its value.</td>
+            </tr>
+            <tr>
+              <td><em>Example:</em> In table <code>Student(Name, Class, Marks)</code>, <code>Name</code>, <code>Class</code>, and <code>Marks</code> are attributes.</td>
+              <td><em>Example:</em> The attribute <code>Class</code> has a domain of permissible values like { 'XI', 'XII' }; <code>Marks</code> has domain of real numbers between 0 and 100.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="rubric">Marking Scheme Rubric: (1 mark each for writing any correct explanation of Attribute and Domain with example)</div>
+      </div>
+    </div>
+
+    <!-- 2022 Q7 -->
+    <div class="q-card" data-year="2022" data-type="theory" data-topic="keys">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2022</span>
+        <span class="meta-badge meta-type">Distinction</span>
+        <span class="meta-badge meta-marks">2 Marks</span>
+        <span class="meta-badge meta-topic">Candidate Key vs Primary Key</span>
+      </div>
+      <div class="q-text">
+        Q7. Differentiate between Candidate Key and Primary Key in the context of Relational Database Model.
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <table class="data-table">
+          <thead><tr><th>Candidate Key</th><th>Primary Key</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>All attributes or sets of attributes in a relation that are uniquely capable of identifying each record/tuple are Candidate Keys.</td>
+              <td>The particular candidate key selected by the database administrator/designer to uniquely identify each row in the table is the Primary Key.</td>
+            </tr>
+            <tr>
+              <td>A table can have <strong>multiple</strong> candidate keys.</td>
+              <td>A table can have <strong>only one</strong> primary key.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="rubric">Marking Scheme Rubric: (1 mark each for correct difference between Candidate Key and Primary Key)</div>
+      </div>
+    </div>
+
+    <!-- 2026 Q27 (DDL Table creation & alter) -->
+    <div class="q-card" data-year="2026" data-type="theory" data-topic="ddl">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2026</span>
+        <span class="meta-badge meta-type">DDL Table Design</span>
+        <span class="meta-badge meta-marks">2 Marks</span>
+        <span class="meta-badge meta-topic">CREATE TABLE & ALTER TABLE</span>
+      </div>
+      <div class="q-text">
+        Q27. Ms. Zoya is a Production Manager in a factory which packages mineral water. She decides to create a table in a database to keep track of the stock present in the factory. Each record of the table will have the following fields:<br>
+        • <code>W_Code</code> – Code of the item (type – CHAR(5))<br>
+        • <code>W_Description</code> – Description of the item (type – VARCHAR(20))<br>
+        • <code>B_Qty</code> – Balance quantity of the item (type – INTEGER)<br>
+        • <code>U_Price</code> – Unit Price of the item (type – FLOAT)<br>
+        The name of the table is <code>W_STOCK</code>.<br><br>
+        (i) (a) Write an SQL command to create the above table (<code>W_Code</code> should be the primary key). [1M]<br>
+        <strong>OR</strong> (b) Can <code>U_Price</code> be the primary key of the above table? Justify your answer. [1M]<br><br>
+        (ii) (a) Assuming that the table <code>W_STOCK</code> is already created, write an SQL command to add an attribute <code>E_Date</code> (of DATE type) to the table. [1M]<br>
+        <strong>OR</strong> (b) Assuming that the table <code>W_STOCK</code> is already created, write an SQL command to remove the column <code>B_Qty</code> from the table. [1M]
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <div style="line-height:1.7;">
+          <p><strong>(i) (a) CREATE TABLE:</strong></p>
+          <pre class="code-block">CREATE TABLE W_STOCK (
+    W_Code CHAR(5) PRIMARY KEY,
+    W_Description VARCHAR(20),
+    B_Qty INTEGER,
+    U_Price FLOAT
+);</pre>
+          <p class="rubric">(½ mark for CREATE TABLE, ½ mark for correct column names and data types)</p>
+          <p><strong>OR (b)</strong> <strong>No</strong>, <code>U_Price</code> cannot be the primary key because multiple items can have the same price (duplicate values) or price could be NULL.</p>
+          <p class="rubric">(½ mark for 'No', ½ mark for justification)</p>
+
+          <p style="margin-top:0.75rem;"><strong>(ii) (a) Add Column:</strong></p>
+          <pre class="code-block">ALTER TABLE W_STOCK ADD E_Date DATE;
+-- OR: ALTER TABLE W_STOCK ADD COLUMN E_Date DATE;</pre>
+          <p class="rubric">(½ mark for ALTER TABLE, ½ mark for ADD COLUMN E_Date DATE)</p>
+          <p><strong>OR (b) Drop Column:</strong></p>
+          <pre class="code-block">ALTER TABLE W_STOCK DROP B_Qty;
+-- OR: ALTER TABLE W_STOCK DROP COLUMN B_Qty;</pre>
+          <p class="rubric">(½ mark for ALTER TABLE, ½ mark for DROP COLUMN B_Qty)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 3: SQL OUTPUT PREDICTION -->
+  <section class="group-section" id="sec-output">
+    <div class="group-header">
+      <h2 class="group-title">🖥️ Type III: SQL Query Output Prediction (2–4 Marks)</h2>
+      <span class="group-count">4 Question Sets</span>
+    </div>
+
+    <!-- 2022 Q5 -->
+    <div class="q-card" data-year="2022" data-type="output" data-topic="output">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2022</span>
+        <span class="meta-badge meta-type">Query Output</span>
+        <span class="meta-badge meta-marks">2 Marks (4 x ½)</span>
+        <span class="meta-badge meta-topic">SELECT, WHERE, GROUP BY</span>
+      </div>
+      <div class="q-text">
+        Q5. Write the output of the SQL queries (a) to (d) based on the table <code>VACCINATION_DATA</code> given below:
+        <table class="data-table">
+          <thead><tr><th>VID</th><th>Name</th><th>Age</th><th>Dose1</th><th>Dose2</th><th>City</th></tr></thead>
+          <tbody>
+            <tr><td>101</td><td>Jenny</td><td>27</td><td>2021-12-25</td><td>2022-01-31</td><td>Delhi</td></tr>
+            <tr><td>102</td><td>Harjot</td><td>55</td><td>2021-07-14</td><td>2021-10-14</td><td>Mumbai</td></tr>
+            <tr><td>103</td><td>Srikanth</td><td>43</td><td>2021-04-18</td><td>2021-07-20</td><td>Delhi</td></tr>
+            <tr><td>104</td><td>Gazala</td><td>75</td><td>2021-07-31</td><td>NULL</td><td>Kolkata</td></tr>
+            <tr><td>105</td><td>Shiksha</td><td>32</td><td>2022-01-01</td><td>NULL</td><td>Mumbai</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:0.5rem;">
+          <p><strong>(a)</strong> <code>SELECT Name, Age FROM VACCINATION_DATA WHERE Dose2 IS NOT NULL AND Age > 40;</code></p>
+          <p><strong>(b)</strong> <code>SELECT City, COUNT(*) FROM VACCINATION_DATA GROUP BY City;</code></p>
+          <p><strong>(c)</strong> <code>SELECT DISTINCT City FROM VACCINATION_DATA;</code></p>
+          <p><strong>(d)</strong> <code>SELECT MAX(Dose1), MIN(Dose2) FROM VACCINATION_DATA;</code></p>
+        </div>
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Output:</div>
+        <div style="line-height:1.7;">
+          <p><strong>(a) Output:</strong></p>
+          <pre class="code-block">Name       Age
+Harjot     55
+Srikanth   43</pre>
+
+          <p><strong>(b) Output:</strong></p>
+          <pre class="code-block">City      COUNT(*)
+Delhi     2
+Mumbai    2
+Kolkata   1</pre>
+
+          <p><strong>(c) Output:</strong></p>
+          <pre class="code-block">City
+Delhi
+Mumbai
+Kolkata</pre>
+
+          <p><strong>(d) Output:</strong></p>
+          <pre class="code-block">MAX(Dose1)   MIN(Dose2)
+2022-01-01   2021-07-20</pre>
+          <div class="rubric">Marking Scheme Rubric: (½ mark for each correct output. Column headings and row ordering can be ignored).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026 Q14 -->
+    <div class="q-card" data-year="2026" data-type="output" data-topic="output">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2026</span>
+        <span class="meta-badge meta-type">MCQ / Output</span>
+        <span class="meta-badge meta-marks">1 Mark</span>
+        <span class="meta-badge meta-topic">Comparison Operators</span>
+      </div>
+      <div class="q-text">
+        Q14. What will be the output of the query?<br>
+        <code>SELECT MACHINE_ID, MACHINE_NAME FROM INVENTORY WHERE QUANTITY <= 100;</code>
+      </div>
+      <div class="q-options">
+        <div>(A) All columns of INVENTORY table with quantity greater than 100</div>
+        <div>(B) ID and name of machines with quantity less than 100 from INVENTORY table</div>
+        <div>(C) All columns of INVENTORY table with quantity greater than or equal to 100</div>
+        <div>(D) ID and name of machines with quantity less than or equal to 100 from INVENTORY table</div>
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <p><strong>(D) ID and name of machines with quantity less than or equal to 100 from INVENTORY table</strong></p>
+        <div class="rubric">Marking Scheme Rubric: (1 Mark for writing the correct option)</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 4: SQL QUERY WRITING -->
+  <section class="group-section" id="sec-queries">
+    <div class="group-header">
+      <h2 class="group-title">✍️ Type IV: SQL Query Writing (Single & Multi-Table Joins) (4 Marks)</h2>
+      <span class="group-count">4 Full Exam Question Sets</span>
+    </div>
+
+    <!-- 2026 Q34 -->
+    <div class="q-card" data-year="2026" data-type="queries" data-topic="queries">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2026</span>
+        <span class="meta-badge meta-type">Query Writing</span>
+        <span class="meta-badge meta-marks">4 Marks (4 x 1)</span>
+        <span class="meta-badge meta-topic">Equi-Join, Group By, Like</span>
+      </div>
+      <div class="q-text">
+        Q34. Assume that you are the Manager of the Loans department of a Finance House. To keep track of the loans you have created two tables : <code>CUSTOMERS</code> and <code>LOANS</code>. The sample data in these tables is given below:
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; margin:1rem 0;">
+          <div>
+            <strong>Table: CUSTOMERS</strong>
+            <table class="data-table">
+              <thead><tr><th>C_ID</th><th>C_Name</th><th>Phone</th></tr></thead>
+              <tbody>
+                <tr><td>00001</td><td>Raj Malhotra</td><td>1234567890</td></tr>
+                <tr><td>00003</td><td>David Xavier</td><td>3456789012</td></tr>
+                <tr><td>00004</td><td>Damini Iyer</td><td>3156789012</td></tr>
+                <tr><td>00008</td><td>Abdul</td><td>2345678901</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <strong>Table: LOANS</strong>
+            <table class="data-table">
+              <thead><tr><th>SNo</th><th>C_ID</th><th>L_Amt</th><th>L_Date</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>00001</td><td>100000</td><td>2020-05-15</td></tr>
+                <tr><td>2</td><td>00003</td><td>50000</td><td>2021-08-20</td></tr>
+                <tr><td>3</td><td>00001</td><td>200000</td><td>2022-01-10</td></tr>
+                <tr><td>4</td><td>00004</td><td>150000</td><td>2023-11-05</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        Write SQL queries for (i) to (iv):<br>
+        <strong>(i)</strong> Display the customer name and total loan amount taken by each customer. [1M]<br>
+        <strong>(ii)</strong> Display customer ID, customer name, loan amount, and loan date for all loans taken after '2021-01-01'. [1M]<br>
+        <strong>(iii)</strong> Display details of all customers whose name ends with the letter 'r'. [1M]<br>
+        <strong>(iv)</strong> Increase the loan amount by 10% for the customer whose C_ID is '00003'. [1M]
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Queries:</div>
+        <div style="line-height:1.7;">
+          <p><strong>(i) Group By Join query:</strong></p>
+          <pre class="code-block">SELECT C_Name, SUM(L_Amt) 
+FROM CUSTOMERS C, LOANS L 
+WHERE C.C_ID = L.C_ID 
+GROUP BY C.C_ID, C_Name;</pre>
+          <p class="rubric">(½ mark for SELECT and WHERE join, ½ mark for GROUP BY C_Name)</p>
+
+          <p style="margin-top:0.75rem;"><strong>(ii) Equi-Join with Date Filter:</strong></p>
+          <pre class="code-block">SELECT C.C_ID, C_Name, L_Amt, L_Date 
+FROM CUSTOMERS C, LOANS L 
+WHERE C.C_ID = L.C_ID AND L_Date > '2021-01-01';</pre>
+          <p class="rubric">(½ mark for SELECT and FROM, ½ mark for correct WHERE join and date condition)</p>
+
+          <p style="margin-top:0.75rem;"><strong>(iii) Pattern Matching (LIKE):</strong></p>
+          <pre class="code-block">SELECT * FROM CUSTOMERS 
+WHERE C_Name LIKE '%r';</pre>
+          <p class="rubric">(½ mark for SELECT, ½ mark for WHERE C_Name LIKE '%r')</p>
+
+          <p style="margin-top:0.75rem;"><strong>(iv) Update Statement:</strong></p>
+          <pre class="code-block">UPDATE LOANS 
+SET L_Amt = L_Amt * 1.10 
+WHERE C_ID = '00003';</pre>
+          <p class="rubric">(½ mark for UPDATE LOANS SET L_Amt = L_Amt * 1.10, ½ mark for WHERE C_ID = '00003')</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2022 Q11 -->
+    <div class="q-card" data-year="2022" data-type="queries" data-topic="queries">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2022</span>
+        <span class="meta-badge meta-type">Query Writing</span>
+        <span class="meta-badge meta-marks">4 Marks (4 x 1)</span>
+        <span class="meta-badge meta-topic">Multi-Table Queries</span>
+      </div>
+      <div class="q-text">
+        Q11. Write SQL queries for (a) to (d) based on the tables <code>PASSENGER</code> and <code>FLIGHT</code> given below:
+        <div style="margin: 0.5rem 0;">
+          <p><strong>Table: FLIGHT</strong> (FNO, START, END, FARE)</p>
+          <p><strong>Table: PASSENGER</strong> (PNO, NAME, GENDER, FNO, F_DATE)</p>
+        </div>
+        <strong>(a)</strong> Write a query to change the fare to 6000 of the flight whose FNO is 'F104'. [1M]<br>
+        <strong>(b)</strong> Write a query to display the total number of MALE and FEMALE PASSENGERS. [1M]<br>
+        <strong>(c)</strong> Write a query to display the NAME, corresponding FARE and F_DATE of all PASSENGERS who have a flight to START from 'DELHI'. [1M]<br>
+        <strong>(d)</strong> Write a query to delete the records of flights which end at 'MUMBAI'. [1M]
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Queries:</div>
+        <div style="line-height:1.7;">
+          <p><strong>(a) UPDATE Query:</strong></p>
+          <pre class="code-block">UPDATE FLIGHT 
+SET FARE = 6000 
+WHERE FNO = 'F104';</pre>
+          <p class="rubric">(½ Mark for UPDATE FLIGHT, ½ Mark for SET FARE=6000 WHERE FNO="F104")</p>
+
+          <p style="margin-top:0.75rem;"><strong>(b) GROUP BY Aggregate Query:</strong></p>
+          <pre class="code-block">SELECT GENDER, COUNT(*) 
+FROM PASSENGER 
+GROUP BY GENDER;</pre>
+          <p class="rubric">(½ mark for SELECT part correctly, ½ mark for GROUP BY GENDER)</p>
+
+          <p style="margin-top:0.75rem;"><strong>(c) Two-Table Equi-Join Query:</strong></p>
+          <pre class="code-block">SELECT NAME, FARE, F_DATE 
+FROM PASSENGER P, FLIGHT F 
+WHERE P.FNO = F.FNO AND START = 'DELHI';
+-- OR: SELECT NAME, FARE, F_DATE FROM PASSENGER NATURAL JOIN FLIGHT WHERE START = 'DELHI';</pre>
+          <p class="rubric">(½ mark for SELECT-FROM part, ½ mark for WHERE join and filter)</p>
+
+          <p style="margin-top:0.75rem;"><strong>(d) DELETE Query:</strong></p>
+          <pre class="code-block">DELETE FROM FLIGHT 
+WHERE END = 'MUMBAI';</pre>
+          <p class="rubric">(½ mark for DELETE FROM FLIGHT, ½ mark for WHERE END = 'MUMBAI')</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 5: PYTHON-MYSQL CONNECTIVITY -->
+  <section class="group-section" id="sec-connector">
+    <div class="group-header">
+      <h2 class="group-title">🔌 Type V: Python-MySQL Database Connectivity (3–4 Marks)</h2>
+      <span class="group-count">4 Comprehensive Applications</span>
+    </div>
+
+    <!-- 2026 Q35 -->
+    <div class="q-card" data-year="2026" data-type="connector" data-topic="connector">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2026</span>
+        <span class="meta-badge meta-type">Python-MySQL Script</span>
+        <span class="meta-badge meta-marks">4 Marks</span>
+        <span class="meta-badge meta-topic">mysql.connector / pymysql</span>
+      </div>
+      <div class="q-text">
+        Q35. Peter has created a table named <code>Account</code> in MySQL database, <code>SCHOOL</code>, having following structure:<br>
+        • Stud_id – integer<br>
+        • Sname – string<br>
+        • Class – string<br>
+        • Fees – float<br><br>
+        Help him in writing a Python program to display records of those students whose fees is less than 5000.<br>
+        Note the following to establish connectivity between Python and MySQL:<br>
+        • Username – admin<br>
+        • Password – root<br>
+        • Host - localhost
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Code:</div>
+        <pre class="code-block">import mysql.connector as pm   # OR import pymysql as pm
+
+# 1. Establish connection
+DB = pm.connect(
+    host='localhost',
+    user='admin',
+    password='root',
+    database='SCHOOL'
+)
+
+# 2. Create cursor object
+CUR = DB.cursor()
+
+# 3. Formulate and execute SQL query
+SQL = "SELECT * FROM Account WHERE Fees < 5000"
+CUR.execute(SQL)
+
+# 4. Fetch and display all matching records
+Data = CUR.fetchall()
+for D in Data:
+    print(D)
+
+# 5. Clean up connection
+DB.close()</pre>
+        <div class="rubric">Marking Scheme Rubric: (1 Mark for importing library & establishing connection) + (1 Mark for creating cursor & executing query) + (1 Mark for fetchall()) + (1 Mark for loop & printing records)</div>
+      </div>
+    </div>
+
+    <!-- 2023 Q29 -->
+    <div class="q-card" data-year="2023" data-type="connector" data-topic="connector">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2023</span>
+        <span class="meta-badge meta-type">Complete Code</span>
+        <span class="meta-badge meta-marks">3 Marks</span>
+        <span class="meta-badge meta-topic">commit(), execute()</span>
+      </div>
+      <div class="q-text">
+        Q29. The code given below deletes the record from the table <code>employee</code> which contains record structure: (E_code, E_name, Sal, City).<br>
+        Note the following credentials: Username is <code>root</code>, Password is <code>root</code>, database is <code>emp</code>.<br>
+        Fill in Statements 1, 2, and 3 to complete the code:
+        <pre class="code-block">import __________ as mysql          # Statement 1
+def delete() :
+  mydb = mysql.connect(host="localhost", user="root", passwd="root", database="emp")
+  mycursor = mydb.cursor()
+  _________________                 # Statement 2 (execute DELETE where E_code='E101')
+  _________________                 # Statement 3 (permanently commit transaction)
+  print ("Record deleted")</pre>
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Answer:</div>
+        <p><strong>Statement 1:</strong> <code>mysql.connector</code></p>
+        <p><strong>Statement 2:</strong> <code>mycursor.execute("DELETE FROM employee WHERE E_code='E101'")</code></p>
+        <p><strong>Statement 3:</strong> <code>mydb.commit()</code></p>
+        <div class="rubric">Marking Scheme Rubric: (1 mark for Statement 1) + (1 mark for Statement 2) + (1 mark for Statement 3: mydb.commit() is mandatory for permanently saving INSERT/UPDATE/DELETE changes!)</div>
+      </div>
+    </div>
+
+    <!-- 2022 Q4 (Predict Output of Connectivity Code) -->
+    <div class="q-card" data-year="2022" data-type="connector" data-topic="connector">
+      <div class="q-meta">
+        <span class="meta-badge meta-year">2022</span>
+        <span class="meta-badge meta-type">Output Prediction</span>
+        <span class="meta-badge meta-marks">2 Marks</span>
+        <span class="meta-badge meta-topic">fetchone() & cursor</span>
+      </div>
+      <div class="q-text">
+        Q4. Consider the following SQL table <code>MEMBER</code> in database <code>CLUB</code>:
+        <table class="data-table">
+          <thead><tr><th>M_ID</th><th>NAME</th><th>ACTIVITY</th></tr></thead>
+          <tbody>
+            <tr><td>M1001</td><td>Amina</td><td>GYM</td></tr>
+            <tr><td>M1002</td><td>Pratik</td><td>GYM</td></tr>
+            <tr><td>M1003</td><td>Simon</td><td>SWIMMING</td></tr>
+            <tr><td>M1004</td><td>Rakesh</td><td>GYM</td></tr>
+            <tr><td>M1005</td><td>Avneet</td><td>SWIMMING</td></tr>
+          </tbody>
+        </table>
+        Predict the output of the following Python connectivity code:
+        <pre class="code-block">MYCUR = DB.cursor()
+MYCUR.execute("USE CLUB")
+MYCUR.execute("SELECT * FROM MEMBER WHERE ACTIVITY='GYM'")
+R = MYCUR.fetchone()
+for i in range(2):
+    R = MYCUR.fetchone()
+    print(R[0], R[1], sep="#")</pre>
+      </div>
+      <button class="ans-btn" onclick="toggleAns(this)">👁️ Toggle Solution & Rubric</button>
+      <div class="ans-container hidden">
+        <div class="ans-title">✅ Official CBSE Marking Scheme Output:</div>
+        <pre class="code-block">M1002#Pratik
+M1004#Rakesh</pre>
+        <div class="rubric">Marking Scheme Rubric: (1 mark for each line of output. The first fetchone() consumed M1001 Amina; the loop then fetched M1002 Pratik, followed by M1004 Rakesh).</div>
+      </div>
+    </div>
+  </section>
+
+<div class="page-pagination">
+  
+    <a href="networks_study_guide.html" class="page-nav-card prev">
+      <span class="page-nav-label">← Unit 2</span>
+      <span class="page-nav-title">🌐 Computer Networks (10M)</span>
+    </a>
+
+  
+    <a href="index.html" class="page-nav-card next">
+      <span class="page-nav-label">Full Review →</span>
+      <span class="page-nav-title">🏠 Exam Preparation Dashboard</span>
+    </a>
+
+</div>
+
+</div>
+
+<div class="page-pagination" role="navigation" aria-label="Page navigation">
+  <a href="networks_study_guide.html" class="page-nav-card prev">
+      <span class="page-nav-label">← Unit 2</span>
+      <span class="page-nav-title">🌐 Computer Networks (10M)</span>
+    </a>
+  <a href="index.html" class="page-nav-card next">
+      <span class="page-nav-label">Home →</span>
+      <span class="page-nav-title">🏠 Exam Preparation Dashboard</span>
+    </a>
+</div>
+
+<footer style="text-align:center; padding:2rem; color:var(--text-muted); font-size:0.85rem; border-top:1px solid var(--border); margin-top:3rem;">
+  <p>© CBSE Class 12 Computer Science Master Preparation Portal • Unit 3: Database Management & SQL</p>
+</footer>
+
+
+
+<script src="cs_exam_prep.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CBSE Class 12 CS (083) — Exam Preparation Portal | SudheerCS</title>
+  <style>
+    
+/* ═══════════════════════════════════════════════════════════════
+   SUDHEER CS THEME — matched from sudheercs.github.io/cbsecs/
+   Color palette: Navy-Blue-Yellow, Python-inspired, clean & flat
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* Fonts — metric equivalents of Calibri / Cambria / Courier New */
+  --DeckSans: 'Calibri','Carlito','Segoe UI',Arial,sans-serif;
+  --DeckSerif: 'Cambria','Caladea',Georgia,serif;
+  --DeckMono: 'Courier New','Liberation Mono',monospace;
+
+  /* Light mode palette */
+  --bg:         #F2F5FA;
+  --surface:    #FFFFFF;
+  --fg:         #1B2A4E;
+  --muted:      #56657F;
+  --line:       #D3DBE8;
+  --accent:     #306998;
+  --accent-dark:#1B4F72;
+  --accent-ink: #FFFFFF;
+  --stage:      #DFE5EF;
+  --hl:         #FFD43B;
+  --hl-ink:     #1B2A4E;
+  --shadow:     rgba(27,42,78,.16);
+  --radius:     10px;
+  --radius-lg:  14px;
+
+  /* Semantic aliases used by existing pages */
+  --primary:       #306998;
+  --primary-dark:  #1B4F72;
+  --secondary:     #FFD43B;
+  --text:          #1B2A4E;
+  --text-muted:    #56657F;
+  --border:        #D3DBE8;
+  --card-bg:       #FFFFFF;
+  --ans-bg:        #EEF4FB;
+  --ans-border:    #86B7E8;
+  --ans-text:      #1B2A4E;
+  --code-bg:       #0D1324;
+  --code-text:     #E7ECF6;
+  --badge-bg:      #EEF4FB;
+  --badge-text:    #1B4F72;
+}
+
+/* Dark mode — activated by [data-theme="dark"] on <body> */
+[data-theme="dark"] {
+  --bg:         #0D1324;
+  --surface:    #161F36;
+  --fg:         #E7ECF6;
+  --muted:      #9BA9C4;
+  --line:       #28344F;
+  --accent:     #86B7E8;
+  --accent-dark:#CADCFC;
+  --accent-ink: #0D1324;
+  --stage:      #090E1B;
+  --shadow:     rgba(0,0,0,.5);
+
+  --primary:       #86B7E8;
+  --primary-dark:  #CADCFC;
+  --secondary:     #FFD43B;
+  --text:          #E7ECF6;
+  --text-muted:    #9BA9C4;
+  --border:        #28344F;
+  --card-bg:       #161F36;
+  --ans-bg:        #121A2E;
+  --ans-border:    #86B7E8;
+  --ans-text:      #E7ECF6;
+  --code-bg:       #090E1B;
+  --code-text:     #E7ECF6;
+  --badge-bg:      #1B2A4E;
+  --badge-text:    #86B7E8;
+}
+
+/* ── Global base overrides ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  font-family: var(--DeckSans) !important;
+  background-color: var(--bg) !important;
+  color: var(--fg) !important;
+  font-size: 16px;
+  line-height: 1.5;
+  transition: background-color 0.2s, color 0.2s;
+}
+h1, h2, h3, h4, h5 {
+  font-family: var(--DeckSerif) !important;
+  color: var(--fg) !important;
+}
+code, pre, .code, kbd {
+  font-family: var(--DeckMono) !important;
+}
+
+/* ── Sticky nav — sudheercs dark navy bar ──────────────────────── */
+.site-nav {
+  background: #0D1324 !important;
+  border-bottom: 1px solid #28344F !important;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,.35);
+}
+.nav-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0.7rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 0.6rem;
+  text-decoration: none;
+  color: #E7ECF6 !important;
+  font-family: var(--DeckSerif) !important;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+.nav-brand:hover { color: #86B7E8 !important; }
+.brand-icon { font-size: 1.35rem; }
+.brand-sub {
+  font-family: var(--DeckSans) !important;
+  font-size: 0.72rem; font-weight: 700;
+  padding: 0.12rem 0.45rem;
+  background: #306998; color: #fff;
+  border-radius: 999px; text-transform: uppercase;
+}
+.nav-links { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+.nav-item {
+  font-family: var(--DeckSans) !important;
+  color: #9BA9C4 !important;
+  text-decoration: none;
+  font-size: 0.875rem; font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 7px;
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-item:hover { color: #E7ECF6 !important; background: rgba(134,183,232,.12); }
+.nav-item.active { color: #FFD43B !important; background: rgba(255,212,59,.1); font-weight: 700; }
+.nav-badge {
+  font-size: 0.68rem; padding: 0.08rem 0.4rem; border-radius: 999px;
+  background: rgba(48,105,152,.5); color: #CADCFC; font-weight: 700;
+}
+.nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+.theme-toggle {
+  background: #1B2A4E; border: 1px solid #28344F;
+  color: #E7ECF6; padding: 0.4rem 0.8rem;
+  border-radius: 7px; font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; font-family: var(--DeckSans) !important;
+  transition: background 0.15s;
+}
+.theme-toggle:hover { background: #22335C; border-color: #306998; }
+
+/* ── Breadcrumb ────────────────────────────────────────────────── */
+.breadcrumb-bar {
+  background: var(--surface) !important;
+  border-bottom: 1px solid var(--line) !important;
+  padding: 0.6rem 1.25rem;
+}
+.breadcrumb-container {
+  max-width: 1180px; margin: 0 auto;
+  font-size: 0.84rem; color: var(--muted);
+  display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;
+}
+.breadcrumb-container a { color: var(--accent) !important; text-decoration: none; font-weight: 600; }
+.breadcrumb-container a:hover { text-decoration: underline; }
+.breadcrumb-separator { opacity: 0.5; }
+.breadcrumb-current { font-weight: 600; color: var(--fg) !important; }
+
+/* ── Home button for sudheercs.github.io ──────────────────────── */
+.sudheer-home-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: #FFD43B; color: #1B2A4E !important;
+  font-family: var(--DeckSans) !important;
+  font-size: 0.8rem; font-weight: 700;
+  padding: 0.4rem 0.9rem; border-radius: 7px;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+.sudheer-home-btn:hover { background: #F4A261; transform: translateY(-1px); }
+.sudheer-home-btn .btn-icon { font-size: 1rem; }
+
+/* ── Cards ─────────────────────────────────────────────────────── */
+.q-card, .card {
+  background: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: 0 2px 8px var(--shadow);
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.q-card:hover, .card:hover {
+  box-shadow: 0 8px 22px var(--shadow);
+  transform: translateY(-2px);
+}
+
+/* ── Buttons ────────────────────────────────────────────────────── */
+.btn, button.ans-btn, .toggle-btn {
+  font-family: var(--DeckSans) !important;
+  background: var(--accent) !important;
+  color: var(--accent-ink) !important;
+  border: none; border-radius: 7px;
+  padding: 0.5rem 1rem;
+  cursor: pointer; font-weight: 600;
+  transition: background 0.15s, transform 0.1s;
+}
+.btn:hover, button.ans-btn:hover, .toggle-btn:hover {
+  background: var(--accent-dark) !important;
+  transform: translateY(-1px);
+}
+
+/* ── Filter pills ───────────────────────────────────────────────── */
+.pill {
+  font-family: var(--DeckSans) !important;
+  border: 1px solid var(--line) !important;
+  background: var(--surface) !important;
+  color: var(--fg) !important;
+  border-radius: 999px; padding: 0.35rem 0.9rem;
+  cursor: pointer; font-size: 0.84rem; font-weight: 500;
+  transition: all 0.15s;
+}
+.pill:hover { border-color: var(--accent) !important; color: var(--accent) !important; }
+.pill.active { background: var(--accent) !important; color: var(--accent-ink) !important; border-color: var(--accent) !important; }
+
+/* ── Answer / solution blocks ───────────────────────────────────── */
+.ans-container {
+  background: var(--ans-bg) !important;
+  border-left: 4px solid var(--accent) !important;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--ans-text) !important;
+}
+
+/* ── Marks / marks badges ───────────────────────────────────────── */
+.marks-badge, .badge, .mark-badge {
+  background: var(--hl) !important;
+  color: var(--hl-ink) !important;
+  font-family: var(--DeckSans) !important;
+  font-weight: 700; border-radius: 999px;
+}
+
+/* ── Code blocks ────────────────────────────────────────────────── */
+pre, code {
+  background: var(--code-bg) !important;
+  color: var(--code-text) !important;
+  font-family: var(--DeckMono) !important;
+  border-radius: 7px;
+}
+
+/* ── Tables ─────────────────────────────────────────────────────── */
+table { border-collapse: collapse; width: 100%; }
+th { background: var(--accent) !important; color: var(--accent-ink) !important; font-family: var(--DeckSerif) !important; }
+td, th { border: 1px solid var(--line) !important; padding: 0.6rem 0.9rem; }
+tr:nth-child(even) td { background: var(--stage) !important; }
+
+/* ── Bottom pagination ──────────────────────────────────────────── */
+.page-pagination {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem; margin: 2.5rem 0 1rem;
+  padding-top: 1.75rem; border-top: 1px solid var(--line);
+}
+.page-nav-card {
+  background: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius) !important;
+  padding: 1.1rem 1.25rem;
+  text-decoration: none; display: flex; flex-direction: column;
+  transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.page-nav-card:hover {
+  border-color: var(--accent) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--shadow);
+}
+.page-nav-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--muted) !important; letter-spacing: 0.5px; margin-bottom: 0.2rem; }
+.page-nav-title { font-family: var(--DeckSerif) !important; font-size: 1.02rem; font-weight: 700; color: var(--fg) !important; }
+.page-nav-card.next .page-nav-title { justify-content: flex-end; text-align: right; }
+
+/* ── Section / group headers ────────────────────────────────────── */
+.group-header { border-bottom: 2px solid var(--line) !important; }
+.group-title { font-family: var(--DeckSerif) !important; color: var(--fg) !important; }
+.section-label { font-family: var(--DeckSerif) !important; }
+
+/* ── Search input ───────────────────────────────────────────────── */
+.search-input, input[type="text"], input[type="search"] {
+  font-family: var(--DeckSans) !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  color: var(--fg) !important;
+  border-radius: 8px;
+}
+.search-input:focus, input:focus {
+  outline: 2px solid var(--accent) !important; outline-offset: 2px;
+}
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+footer {
+  font-family: var(--DeckSans) !important;
+  color: var(--muted) !important;
+  border-top: 1px solid var(--line) !important;
+}
+
+/* ── SVG diagrams: re-colour for navy/blue theme ─────────────────── */
+.svg-box { background: var(--stage) !important; border: 1px solid var(--line) !important; border-radius: var(--radius); }
+
+/* ── Controls bar ───────────────────────────────────────────────── */
+.controls {
+  background: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+/* ── Highlight important text in yellow ─────────────────────────── */
+.hl, mark { background: var(--hl) !important; color: var(--hl-ink) !important; border-radius: 3px; padding: 0 2px; }
+
+/* ── Scrollbar styling ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--stage); }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+
+    /* ── Page-specific layout ── */
+    .home-wrap {
+      max-width: 1180px; margin: 0 auto;
+      padding: 2.5rem 1rem 4rem;
+    }
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem 2.5rem;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 2.5rem;
+    }
+    .hero h1 {
+      font-family: var(--DeckSerif) !important;
+      font-size: clamp(1.9rem, 5vw, 2.9rem);
+      line-height: 1.1; margin: 0 0 0.6rem;
+      color: var(--fg);
+    }
+    .hero h1 span { color: var(--hl); }
+    .hero p { color: var(--muted); max-width: 60ch; margin: 0 auto 1.5rem; font-size: 1.05rem; }
+    .hero-badges { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; }
+    .hero-badge {
+      display: inline-block; padding: 0.25rem 0.75rem;
+      background: var(--stage); border: 1px solid var(--line);
+      color: var(--muted); border-radius: 999px;
+      font-size: 0.8rem; font-weight: 600;
+    }
+    .hero-badge.hl { background: var(--hl); color: var(--hl-ink); border-color: var(--hl); }
+
+    /* Stats bar */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem; margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 1.1rem 1.25rem;
+      text-align: center; box-shadow: 0 2px 8px var(--shadow);
+    }
+    .stat-num {
+      font-family: var(--DeckSerif) !important;
+      font-size: 2.2rem; font-weight: 700; color: var(--accent);
+      display: block; line-height: 1;
+    }
+    .stat-label { font-size: 0.82rem; color: var(--muted); margin-top: 0.3rem; font-weight: 600; }
+
+    /* Unit cards */
+    .units-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem; margin-bottom: 3rem;
+    }
+    .unit-card {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius-lg); overflow: hidden;
+      text-decoration: none; color: inherit;
+      display: flex; flex-direction: column;
+      transition: box-shadow 0.15s, transform 0.15s;
+      box-shadow: 0 2px 10px var(--shadow);
+    }
+    .unit-card:hover { box-shadow: 0 10px 28px var(--shadow); transform: translateY(-3px); }
+    .unit-card-header {
+      padding: 1.5rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .unit-icon { font-size: 2.5rem; margin-bottom: 0.5rem; display: block; }
+    .unit-title {
+      font-family: var(--DeckSerif) !important;
+      font-size: 1.3rem; font-weight: 700; color: var(--fg); margin: 0 0 0.3rem;
+    }
+    .unit-subtitle { font-size: 0.86rem; color: var(--muted); }
+    .unit-card-body { padding: 1rem 1.5rem 1.25rem; flex: 1; }
+    .unit-marks-badge {
+      display: inline-block; padding: 0.3rem 0.9rem;
+      border-radius: 999px; font-weight: 700; font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+    .unit-marks-badge.u1 { background: #EEF4FB; color: #1B4F72; border: 1px solid #86B7E8; }
+    .unit-marks-badge.u2 { background: #FFF8E1; color: #7B4F00; border: 1px solid #FFD43B; }
+    .unit-marks-badge.u3 { background: #F0FDF4; color: #14532D; border: 1px solid #86EFAC; }
+    [data-theme="dark"] .unit-marks-badge.u1 { background: #121A2E; color: #CADCFC; border-color: #306998; }
+    [data-theme="dark"] .unit-marks-badge.u2 { background: #1A150A; color: #FFD43B; border-color: #856404; }
+    [data-theme="dark"] .unit-marks-badge.u3 { background: #0A1E12; color: #86EFAC; border-color: #15803D; }
+    .unit-topics { list-style: none; padding: 0; margin: 0; }
+    .unit-topics li {
+      padding: 0.3rem 0; font-size: 0.88rem; color: var(--muted);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .unit-topics li::before { content: '·'; color: var(--accent); font-weight: 700; font-size: 1.1rem; }
+    .unit-cta {
+      display: block; margin-top: 1rem; padding: 0.6rem 1rem;
+      background: var(--accent); color: var(--accent-ink);
+      border-radius: 7px; text-align: center; font-weight: 700;
+      font-size: 0.9rem; text-decoration: none;
+      transition: background 0.15s;
+    }
+    .unit-cta:hover { background: var(--accent-dark); }
+
+    /* Blueprint table */
+    .blueprint-wrap { margin-bottom: 3rem; }
+    .blueprint-wrap h2 {
+      font-family: var(--DeckSerif) !important;
+      font-size: 1.5rem; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .blueprint-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .blueprint-table th {
+      background: var(--accent) !important; color: var(--accent-ink) !important;
+      font-family: var(--DeckSerif) !important; padding: 0.7rem 1rem; text-align: left;
+      border: 1px solid var(--line);
+    }
+    .blueprint-table td { padding: 0.65rem 1rem; border: 1px solid var(--line); }
+    .blueprint-table tr:nth-child(even) td { background: var(--stage); }
+    .blueprint-table .total-row td { font-weight: 700; background: var(--hl) !important; color: var(--hl-ink) !important; }
+
+    footer.site-foot {
+      margin-top: 2rem; padding: 1.25rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted); font-size: 0.84rem; text-align: center;
+    }
+    footer.site-foot a { color: var(--accent); font-weight: 600; text-decoration: none; }
+    footer.site-foot a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="index.html" class="nav-brand" aria-label="CBSE CS Exam Hub Home">
+      <span class="brand-icon">🎓</span>
+      <span class="brand-text">CBSE CS 083&nbsp;<span class="brand-sub">Exam Hub</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-item active">🏠 Home</a>
+      <a href="python_study_guide.html" class="nav-item ">🐍 Python & Stacks<span class="nav-badge">40M</span></a>
+      <a href="networks_study_guide.html" class="nav-item ">🌐 Networks<span class="nav-badge">10M</span></a>
+      <a href="dbms_sql_guide.html" class="nav-item ">🗄️ DBMS & SQL<span class="nav-badge">20M</span></a>
+      
+    </div>
+    <div class="nav-actions">
+      <a href="https://sudheercs.github.io/cbsecs/" class="sudheer-home-btn" target="_blank" rel="noopener" aria-label="Go to SudheerCS Main Website">
+        <span class="btn-icon">🏫</span> SudheerCS
+      </a>
+      <button class="theme-toggle" onclick="toggleTheme()" id="globalThemeBtn" aria-label="Toggle dark/light mode">🌙 Dark</button>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb-bar" aria-label="Breadcrumb">
+  <div class="breadcrumb-container">
+    <a href="https://sudheercs.github.io/cbsecs/">SudheerCS</a> <span class="breadcrumb-separator">›</span> <span class="breadcrumb-current">Exam Preparation Hub</span>
+  </div>
+</div>
+
+
+<div class="home-wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span style="font-size:3rem">📚</span>
+    <h1>CBSE Class 12 CS (083)<br><span>Master Exam Prep Portal</span></h1>
+    <p>All questions &amp; official solutions from 2022–2026 Board Papers &amp; Marking Schemes — grouped by typology, with diagrams and rubrics.</p>
+    <div class="hero-badges">
+      <span class="hero-badge">📅 2022–2026 Papers</span>
+      <span class="hero-badge">✅ Official Marking Schemes</span>
+      <span class="hero-badge">🗂️ Grouped by Type</span>
+      <span class="hero-badge hl">70 Marks Theory</span>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-card"><span class="stat-num">5</span><div class="stat-label">Years Covered (2022–2026)</div></div>
+    <div class="stat-card"><span class="stat-num">3</span><div class="stat-label">Major Units</div></div>
+    <div class="stat-card"><span class="stat-num">70</span><div class="stat-label">Total Theory Marks</div></div>
+    <div class="stat-card"><span class="stat-num">100%</span><div class="stat-label">Offline &amp; Self-Contained</div></div>
+  </div>
+
+  <!-- UNIT CARDS -->
+  <div class="units-grid">
+
+    <a href="python_study_guide.html" class="unit-card">
+      <div class="unit-card-header">
+        <span class="unit-icon">🐍</span>
+        <div class="unit-title">Unit 1 — Python Programming</div>
+        <div class="unit-subtitle">Computational Thinking &amp; Programming in Python</div>
+      </div>
+      <div class="unit-card-body">
+        <div class="unit-marks-badge u1">40 Marks · 57% of Theory</div>
+        <ul class="unit-topics">
+          <li>Text, Binary &amp; CSV File Handling</li>
+          <li>Stack (LIFO) Implementation</li>
+          <li>Output Tracing &amp; Error Finding</li>
+          <li>Functions, Scope &amp; Recursion</li>
+          <li>MCQs &amp; Assertion-Reason (1M)</li>
+        </ul>
+        <span class="unit-cta">Study Unit 1 →</span>
+      </div>
+    </a>
+
+    <a href="networks_study_guide.html" class="unit-card">
+      <div class="unit-card-header">
+        <span class="unit-icon">🌐</span>
+        <div class="unit-title">Unit 2 — Computer Networks</div>
+        <div class="unit-subtitle">Communication Technologies &amp; Networking</div>
+      </div>
+      <div class="unit-card-body">
+        <div class="unit-marks-badge u2">10 Marks · 14% of Theory</div>
+        <ul class="unit-topics">
+          <li>5-Mark Case Study: Server Placement &amp; Cables</li>
+          <li>Network Topologies with Diagrams</li>
+          <li>Protocols: HTTP, FTP, SMTP, TCP/IP</li>
+          <li>Transmission Media Comparison</li>
+          <li>Web Technologies &amp; Packet Switching</li>
+        </ul>
+        <span class="unit-cta">Study Unit 2 →</span>
+      </div>
+    </a>
+
+    <a href="dbms_sql_guide.html" class="unit-card">
+      <div class="unit-card-header">
+        <span class="unit-icon">🗄️</span>
+        <div class="unit-title">Unit 3 — Database Management &amp; SQL</div>
+        <div class="unit-subtitle">DBMS Concepts, SQL &amp; Python-MySQL</div>
+      </div>
+      <div class="unit-card-body">
+        <div class="unit-marks-badge u3">20 Marks · 29% of Theory</div>
+        <ul class="unit-topics">
+          <li>Relational Model: Keys, Constraints</li>
+          <li>DDL vs DML Commands</li>
+          <li>Single &amp; Multi-Table SQL Queries</li>
+          <li>GROUP BY … HAVING &amp; Aggregate Functions</li>
+          <li>Python–MySQL Connectivity (cursor, fetchall)</li>
+        </ul>
+        <span class="unit-cta">Study Unit 3 →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- BLUEPRINT TABLE -->
+  <div class="blueprint-wrap">
+    <h2>📊 Exam Blueprint (Theory — 70 Marks)</h2>
+    <table class="blueprint-table">
+      <thead>
+        <tr>
+          <th>Unit</th><th>Topic</th><th>Marks</th><th>Weightage</th><th>Key Question Types</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Unit 1</strong></td>
+          <td>Computational Thinking &amp; Programming in Python</td>
+          <td>40</td><td>57%</td>
+          <td>MCQ/AR (1M), Short Answer (2M), File Handling &amp; Stacks (3M), Code Output (3M), Functions (4M)</td>
+        </tr>
+        <tr>
+          <td><strong>Unit 2</strong></td>
+          <td>Computer Networks</td>
+          <td>10</td><td>14%</td>
+          <td>Network Case Study (5M), MCQ/Protocols/Topologies (1–2M)</td>
+        </tr>
+        <tr>
+          <td><strong>Unit 3</strong></td>
+          <td>Database Management &amp; SQL</td>
+          <td>20</td><td>29%</td>
+          <td>Relational Concepts (2M), DDL/DML Queries (3M), JOIN/GROUP BY (3M), Python-MySQL (4M)</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="2"><strong>Total Theory</strong></td>
+          <td><strong>70</strong></td><td><strong>100%</strong></td>
+          <td>+ 30 Marks Practical (separate)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<footer class="site-foot">
+  <p>© CBSE Class 12 Computer Science (083) Exam Hub &nbsp;•&nbsp; Authored from verified board question papers &amp; official marking schemes (2022–2026) &nbsp;•&nbsp;
+  Source: <a href="https://sudheercs.github.io/cbsecs/" target="_blank" rel="noopener">SudheerCS</a></p>
+</footer>
+
+
+<script src="cs_exam_prep.js"></script>
+
+</body>
+</html>
